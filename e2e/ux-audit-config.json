@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://127.0.0.1:8000",
+  "outDir": "ux-audit-paso6",
+  "widths": [1440, 1280],
+  "routes": ["/login", "/dashboard", "/products", "/orders", "/settings/account"],
+  "variants": [
+    { "name": "light" },
+    { "name": "dark", "colorScheme": "dark" }
+  ],
+  "roles": [
+    { "name": "signedin", "storageState": "../.auth-audit/state.json" }
+  ],
+  "executablePath": "C:/Users/EDWIN CARBONEL/AppData/Local/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-win64/chrome-headless-shell.exe",
+  "allowUnsafeRoutes": false
+}

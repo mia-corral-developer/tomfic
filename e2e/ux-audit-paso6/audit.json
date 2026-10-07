@@ -1,0 +1,3542 @@
+[
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/login",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": "/dashboard",
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-login-1440-4d0a80.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 6980,
+    "cls": 0,
+    "ttfbMs": 3118,
+    "dclMs": 6483,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "redirect",
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/dashboard",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-dashboard-1440-66ee6a.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1404,
+    "cls": 0,
+    "ttfbMs": 1065,
+    "dclMs": 1255,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/products",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/products",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-products-1440-86554f.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Inventory - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Inventory"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 68,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "« Previous",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Next »",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Search Products",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Category",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Location",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Dolorem fugit qui corrupti vel qui sunt.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 22",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ea est quos vitae et et.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 48",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Quidem velit labore rem eum.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 9",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ipsum nobis quo dicta.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 20,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1420,
+    "cls": 0,
+    "ttfbMs": 885,
+    "dclMs": 1121,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/orders",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/orders",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-orders-1440-5e9413.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Orders - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Orders"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 25,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Search Orders",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Status",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Source",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "No orders found",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 6,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1184,
+    "cls": 0,
+    "ttfbMs": 934,
+    "dclMs": 1057,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/settings/account",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/settings/account",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-settings_account-1440-1d15a7.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Account Settings - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Account Settings"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Profile Information\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 27,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Profile Information",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Name",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Email",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Settings",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Password",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Notifications",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Preferences",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 10,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 2,
+    "autocompleteMissing": [
+      {
+        "field": "input[type=text]#name",
+        "autocomplete": null
+      },
+      {
+        "field": "input[type=email]#email",
+        "autocomplete": null
+      }
+    ],
+    "perfRan": true,
+    "lcpMs": 1144,
+    "cls": 0,
+    "ttfbMs": 911,
+    "dclMs": 1034,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": true,
+    "reflowScrollWidth": 397,
+    "reflowTableOnly": false,
+    "reflowOffenders": [
+      "button.border-b-2"
+    ],
+    "reflowTables": 0,
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "autocomplete",
+      "performance",
+      "reflow"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "WCAG 1.3.5",
+      "H1",
+      "WCAG 1.4.10"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/login",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": "/dashboard",
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-login-1280-4d0a80.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 2208,
+    "cls": 0,
+    "ttfbMs": 1661,
+    "dclMs": 2017,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "redirect",
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/dashboard",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-dashboard-1280-66ee6a.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1408,
+    "cls": 0,
+    "ttfbMs": 1147,
+    "dclMs": 1284,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/products",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/products",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-products-1280-86554f.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Inventory - Laravel",
+    "pageHeight": 996,
+    "h1": [
+      "Inventory"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 68,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "« Previous",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Next »",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Search Products",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Category",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Location",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Dolorem fugit qui corrupti vel qui sunt.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 22",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ea est quos vitae et et.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 48",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Quidem velit labore rem eum.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 9",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ipsum nobis quo dicta.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 20,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1240,
+    "cls": 0,
+    "ttfbMs": 923,
+    "dclMs": 1082,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/orders",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/orders",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-orders-1280-5e9413.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Orders - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Orders"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 25,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Search Orders",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Status",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Source",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "No orders found",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 6,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1172,
+    "cls": 0,
+    "ttfbMs": 916,
+    "dclMs": 1065,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "light",
+    "route": "/settings/account",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/settings/account",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-light-settings_account-1280-1d15a7.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Account Settings - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Account Settings"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Profile Information\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 27,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Profile Information",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Name",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Email",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Settings",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Password",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Notifications",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Preferences",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 10,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 2,
+    "autocompleteMissing": [
+      {
+        "field": "input[type=text]#name",
+        "autocomplete": null
+      },
+      {
+        "field": "input[type=email]#email",
+        "autocomplete": null
+      }
+    ],
+    "perfRan": true,
+    "lcpMs": 1544,
+    "cls": 0,
+    "ttfbMs": 1264,
+    "dclMs": 1387,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": true,
+    "reflowScrollWidth": 397,
+    "reflowTableOnly": false,
+    "reflowOffenders": [
+      "button.border-b-2"
+    ],
+    "reflowTables": 0,
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "autocomplete",
+      "performance",
+      "reflow"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "WCAG 1.3.5",
+      "H1",
+      "WCAG 1.4.10"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/login",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": "/dashboard",
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-login-1440-754c57.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 2408,
+    "cls": 0,
+    "ttfbMs": 1904,
+    "dclMs": 2213,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "redirect",
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/dashboard",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-dashboard-1440-629797.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1700,
+    "cls": 0,
+    "ttfbMs": 1309,
+    "dclMs": 1484,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/products",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/products",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-products-1440-b42e0b.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Inventory - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Inventory"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 68,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "« Previous",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Next »",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Search Products",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Category",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Location",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Dolorem fugit qui corrupti vel qui sunt.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 22",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ea est quos vitae et et.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 48",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Quidem velit labore rem eum.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 9",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ipsum nobis quo dicta.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 20,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 1368,
+    "cls": 0,
+    "ttfbMs": 1067,
+    "dclMs": 1208,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/orders",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/orders",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-orders-1440-93cbc3.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Orders - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Orders"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 25,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Search Orders",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Status",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Source",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "No orders found",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 6,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 2672,
+    "cls": 0,
+    "ttfbMs": 2320,
+    "dclMs": 2510,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/settings/account",
+    "width": 1440,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/settings/account",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-settings_account-1440-a53785.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Account Settings - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Account Settings"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Profile Information\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "controls": 27,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Profile Information",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Name",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Email",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Settings",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Password",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Notifications",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Preferences",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 10,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 2,
+    "autocompleteMissing": [
+      {
+        "field": "input[type=text]#name",
+        "autocomplete": null
+      },
+      {
+        "field": "input[type=email]#email",
+        "autocomplete": null
+      }
+    ],
+    "perfRan": true,
+    "lcpMs": 1936,
+    "cls": 0,
+    "ttfbMs": 1673,
+    "dclMs": 1812,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": true,
+    "reflowScrollWidth": 397,
+    "reflowTableOnly": false,
+    "reflowOffenders": [
+      "button.border-b-2"
+    ],
+    "reflowTables": 0,
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "autocomplete",
+      "performance",
+      "reflow"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "WCAG 1.3.5",
+      "H1",
+      "WCAG 1.4.10"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/login",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": "/dashboard",
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-login-1280-754c57.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 3860,
+    "cls": 0,
+    "ttfbMs": 3278,
+    "dclMs": 3647,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "redirect",
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/dashboard",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/dashboard",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-dashboard-1280-629797.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Dashboard - Laravel",
+    "pageHeight": 1009,
+    "h1": [
+      "Dashboard"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Recent Orders\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 31,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Total Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "6",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Value",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "$684.9K",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Low Stock",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Total Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "0",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 20
+      },
+      {
+        "text": "Recent Orders",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Low Stock Alert",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Recent Products",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "explicabo placeat incidunt",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 47,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 2284,
+    "cls": 0,
+    "ttfbMs": 1967,
+    "dclMs": 2135,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/products",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/products",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-products-1280-b42e0b.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Inventory - Laravel",
+    "pageHeight": 996,
+    "h1": [
+      "Inventory"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 68,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "« Previous",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Next »",
+        "ratio": 1.84,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 0.5,
+        "size": 12
+      },
+      {
+        "text": "Search Products",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Category",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Location",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Dolorem fugit qui corrupti vel qui sunt.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 22",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ea est quos vitae et et.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 48",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Quidem velit labore rem eum.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Min: 9",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 11
+      },
+      {
+        "text": "Ipsum nobis quo dicta.",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 20,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 2116,
+    "cls": 0,
+    "ttfbMs": 1743,
+    "dclMs": 1913,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/orders",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/orders",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-orders-1280-93cbc3.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Orders - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Orders"
+    ],
+    "headingSkips": [],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 25,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Search Orders",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Status",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Source",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "No orders found",
+        "ratio": 2.88,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      }
+    ],
+    "lowContrastCount": 6,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 0,
+    "autocompleteMissing": [],
+    "perfRan": true,
+    "lcpMs": 2216,
+    "cls": 0,
+    "ttfbMs": 1837,
+    "dclMs": 2027,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": false,
+    "reflowScrollWidth": 320,
+    "reflowTableOnly": false,
+    "reflowOffenders": [],
+    "failedChecks": [
+      "contrast",
+      "skipLink",
+      "performance"
+    ],
+    "notRun": [],
+    "standards": [
+      "WCAG 1.4.3",
+      "H1"
+    ]
+  },
+  {
+    "role": "signedin",
+    "variant": "dark",
+    "route": "/settings/account",
+    "width": 1280,
+    "height": 900,
+    "finalUrl": "http://127.0.0.1:8000/settings/account",
+    "redirectedTo": null,
+    "status": 200,
+    "screenshot": "ux-audit-paso6/signedin-dark-settings_account-1280-a53785.png",
+    "clipped": false,
+    "consoleErrors": [],
+    "error": null,
+    "audited": true,
+    "title": "Account Settings - Laravel",
+    "pageHeight": 900,
+    "h1": [
+      "Account Settings"
+    ],
+    "headingSkips": [
+      "h1→h3 \"Profile Information\""
+    ],
+    "overflowX": false,
+    "scrollWidth": 1280,
+    "controls": 27,
+    "unnamedControls": [],
+    "unnamedCount": 0,
+    "imgsNoAlt": [],
+    "lowContrast": [
+      {
+        "text": "Profile Information",
+        "ratio": 1.09,
+        "need": 4.5,
+        "color": "rgb(245, 245, 244)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Name",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Email",
+        "ratio": 1.86,
+        "need": 4.5,
+        "color": "rgb(190, 190, 188)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Workspace",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Settings",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "/",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 12
+      },
+      {
+        "text": "Password",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Notifications",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      },
+      {
+        "text": "Preferences",
+        "ratio": 3.64,
+        "need": 4.5,
+        "color": "rgb(119, 119, 116)",
+        "opacity": 1,
+        "size": 14
+      }
+    ],
+    "lowContrastCount": 10,
+    "contrastSkipped": 0,
+    "contrastSkippedReasons": {
+      "image": 0,
+      "colour": 0
+    },
+    "contrastSrOnlyExempt": 0,
+    "smallTargetCount": 0,
+    "smallTargets": [],
+    "lang": "en",
+    "titleGeneric": false,
+    "duplicateIds": [],
+    "hasMain": true,
+    "hasNav": true,
+    "hasSkipLink": false,
+    "placeholderOnlyCount": 0,
+    "placeholderOnly": [],
+    "requiredUnmarkedCount": 0,
+    "requiredUnmarked": [],
+    "autocompleteMissingCount": 2,
+    "autocompleteMissing": [
+      {
+        "field": "input[type=text]#name",
+        "autocomplete": null
+      },
+      {
+        "field": "input[type=email]#email",
+        "autocomplete": null
+      }
+    ],
+    "perfRan": true,
+    "lcpMs": 1476,
+    "cls": 0,
+    "ttfbMs": 1198,
+    "dclMs": 1339,
+    "focusStops": 2,
+    "focusStoppedAt": null,
+    "focusUnknown": 1,
+    "focusNoIndicatorCount": 0,
+    "focusNoIndicator": [],
+    "focusObscuredCount": 0,
+    "focusObscured": [],
+    "focusChanges": [
+      {
+        "id": "a \"a\"",
+        "changed": "outline"
+      },
+      {
+        "id": "input \"Search products, orders, customers...\"",
+        "changed": null
+      }
+    ],
+    "reducedMotionInfiniteCount": 0,
+    "reducedMotionInfinite": [],
+    "reflowOverflow": true,
+    "reflowScrollWidth": 397,
+    "reflowTableOnly": false,
+    "reflowOffenders": [
+      "button.border-b-2"
+    ],
+    "reflowTables": 0,
+    "failedChecks": [
+      "headings",
+      "contrast",
+      "skipLink",
+      "autocomplete",
+      "performance",
+      "reflow"
+    ],
+    "notRun": [],
+    "standards": [
+      "Best practice",
+      "WCAG 1.4.3",
+      "WCAG 1.3.5",
+      "H1",
+      "WCAG 1.4.10"
+    ]
+  }
+]

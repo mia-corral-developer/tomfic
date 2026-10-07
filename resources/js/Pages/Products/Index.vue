@@ -273,7 +273,7 @@ const thClass =
                 <thead>
                     <tr class="border-b border-border-subtle">
                         <th class="w-10 px-4 py-2.5">
-                            <input type="checkbox" v-model="selectAll" @change="toggleSelectAll" class="rounded border-border-strong bg-surface-canvas text-brand focus:ring-brand" />
+                            <input type="checkbox" v-model="selectAll" @change="toggleSelectAll" aria-label="Seleccionar todos los productos" class="rounded border-border-strong bg-surface-canvas text-brand focus:ring-brand" />
                         </th>
                         <th :class="thClass">{{ t('products.productCol') }}</th>
                         <th :class="thClass">{{ t('products.skuBarcode') }}</th>
@@ -296,7 +296,7 @@ const thClass =
                     </tr>
                     <tr v-for="product in products.data" :key="product.id" class="border-b border-border-subtle transition-colors last:border-b-0 hover:bg-surface-overlay">
                         <td class="px-4 py-3">
-                            <input type="checkbox" :checked="isSelected(product.id)" @change="toggleSelect(product.id)" class="rounded border-border-strong bg-surface-canvas text-brand focus:ring-brand" />
+                            <input type="checkbox" :checked="isSelected(product.id)" @change="toggleSelect(product.id)" :aria-label="'Seleccionar producto: ' + product.name" class="rounded border-border-strong bg-surface-canvas text-brand focus:ring-brand" />
                         </td>
                         <td class="px-4 py-3">
                             <Link :href="route('products.show', product.id)" class="font-medium text-text-primary hover:text-brand">{{ product.name }}</Link>
