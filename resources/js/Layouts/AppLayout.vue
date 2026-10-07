@@ -20,7 +20,6 @@ import { useI18n } from 'vue-i18n';
 import {
     Boxes,
     LayoutGrid,
-    PackageSearch,
     ShoppingCart,
     Undo2,
     ClipboardList,
@@ -41,6 +40,7 @@ import {
     Search,
     Menu,
     X,
+    ChevronUp,
 } from 'lucide-vue-next';
 
 import { usePermissions } from '@/composables/usePermissions';
@@ -174,6 +174,87 @@ const isActive = (item) => item.active.some((pattern) => route().current(pattern
             </button>
         </div>
 
+        <!-- Sidebar — SiderZellia (320px, spec §2) -->
+        <aside
+            :class="[
+                'zellia-sidebar',
+                mobileOpen && 'zellia-sidebar--open',
+            ]"
+            aria-label="Principal"
+        >
+            <!-- Formas decorativas de fondo (§2.8): recortadas por overflow:hidden -->
+            <div class="zellia-sidebar__shape zellia-sidebar__shape--1" aria-hidden="true" />
+            <div class="zellia-sidebar__shape zellia-sidebar__shape--2" aria-hidden="true" />
+
+            <!-- Header: marca + tagline (§2.4) -->
+            <div class="zellia-sidebar__header">
+                <Link :href="route('dashboard')" class="zellia-sidebar__brand">
+                    <img
+                        src="/images/brand/inventoros_icon_transparent_512.png"
+                        alt="Inventoros"
+                        class="zellia-sidebar__logo"
+                    />
+                </Link>
+            </div>
+
+            <!-- Buscador (§2.5) -->
+            <div class="zellia-sidebar__search-row">
+                <label class="zellia-sidebar__search">
+                    <Search :size="20" aria-hidden="true" />
+                    <input
+                        type="search"
+                        :placeholder="t('nav.search', 'Buscar...')"
+                        @click="globalSearchRef?.open()"
+                        @focus="globalSearchRef?.open()"
+                        readonly
+                        aria-label="Buscar"
+                    />
+                </label>
+            </div>
+
+            <!-- Nav principal (§2.6) -->
+            <div class="zellia-sidebar__main">
+                <div class="zellia-sidebar__divider" aria-hidden="true" />
+                <nav class="zellia-sidebar__nav ds-scroll">
+                    <div v-for="section in visibleSections" :key="section.labelKey" class="zellia-sidebar__group">
+                        <p class="zellia-sidebar__group-title">{{ t(section.labelKey) }}</p>
+                        <Link
+                            v-for="item in section.items"
+                            :key="item.nameKey"
+                            :href="item.href"
+                            class="zellia-sidebar-item"
+                            :aria-current="isActive(item) ? 'page' : undefined"
+                        >
+                            <component
+                                :is="item.icon"
+                                :size="24"
+                                class="zellia-sidebar-item__icon"
+                                aria-hidden="true"
+                            />
+                            <span class="truncate">{{ t(item.nameKey) }}</span>
+                        </Link>
+                    </div>
+                </nav>
+                <div class="zellia-sidebar__divider" aria-hidden="true" />
+            </div>
+
+            <!-- CTA inferior: user switcher (§2.7) -->
+            <Link
+                :href="route('settings.account.index')"
+                data-testid="user-menu"
+                class="zellia-sidebar__cta"
+            >
+                <span
+                    class="zellia-sidebar-item__icon grid place-items-center rounded-full text-caption-1 font-semibold shrink-0"
+                    style="background: #0F489D; color: var(--zellia-color-neutral-100); width: 24px; height: 24px;"
+                >
+                    {{ (user?.name || '?').charAt(0).toUpperCase() }}
+                </span>
+                <span class="zellia-sidebar__cta-text truncate">{{ user?.name }}</span>
+                <ChevronUp :size="24" class="zellia-sidebar-item__icon" aria-hidden="true" />
+            </Link>
+        </aside>
+
         <!-- Mobile backdrop -->
         <div
             v-show="mobileOpen"
@@ -182,107 +263,22 @@ const isActive = (item) => item.active.some((pattern) => route().current(pattern
             aria-hidden="true"
         />
 
-        <!-- Sidebar -->
-        <aside
-            :class="[
-                'fixed md:fixed inset-y-0 left-0 z-50 w-60 flex flex-col',
-                'bg-surface-base border-r border-border-subtle',
-                'transform transition-transform duration-200',
-                mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
-                'pt-12 md:pt-0',
-            ]"
-        >
-            <!-- Workspace badge -->
-            <div class="px-3 h-14 flex items-center border-b border-border-subtle shrink-0">
-                <Link
-                    :href="route('dashboard')"
-                    class="flex items-center gap-2.5 w-full px-2 py-1.5 rounded-md hover:bg-surface-overlay transition-colors ds-focus-ring"
-                >
-                    <img src="/images/brand/inventoros_icon_transparent_512.png" alt="Inventoros" class="h-7 w-7 shrink-0" />
-                    <span class="text-sm font-semibold tracking-tight truncate flex-1 text-left">
-                        {{ workspaceName }}
-                    </span>
-                    <PackageSearch :size="14" class="text-text-tertiary" />
-                </Link>
-            </div>
-
-            <!-- Cmd-K search trigger -->
-            <div class="px-3 pt-3 shrink-0">
-                <button
-                    @click="globalSearchRef?.open()"
-                    class="w-full flex items-center gap-2 h-8 px-2.5 rounded-md text-xs text-text-tertiary
-                           bg-surface-canvas border border-border-subtle hover:border-border-strong
-                           transition-colors ds-focus-ring"
-                >
-                    <Search :size="13" />
-                    <span class="flex-1 text-left">Search…</span>
-                    <kbd class="hidden md:inline px-1.5 py-0.5 rounded bg-surface-overlay text-[10px] font-mono text-text-secondary border border-border-subtle">
-                        ⌘K
-                    </kbd>
-                </button>
-            </div>
-
-            <!-- Nav -->
-            <nav class="flex-1 mt-4 overflow-y-auto ds-scroll px-3 pb-4">
-                <div v-for="section in visibleSections" :key="section.labelKey" class="mb-5">
-                    <p class="px-2 mb-1 text-[10px] font-medium uppercase tracking-wider text-text-tertiary">
-                        {{ t(section.labelKey) }}
-                    </p>
-                    <div class="space-y-px">
-                        <Link
-                            v-for="item in section.items"
-                            :key="item.nameKey"
-                            :href="item.href"
-                            :class="[
-                                'group flex items-center gap-2.5 h-8 px-2.5 rounded-md text-[13px] font-medium',
-                                'transition-colors ds-focus-ring',
-                                isActive(item)
-                                    ? 'bg-surface-overlay text-text-primary'
-                                    : 'text-text-secondary hover:bg-surface-overlay hover:text-text-primary',
-                            ]"
-                        >
-                            <component
-                                :is="item.icon"
-                                :size="15"
-                                :class="isActive(item) ? 'text-brand' : 'text-text-tertiary group-hover:text-text-secondary'"
-                            />
-                            <span class="truncate flex-1">{{ t(item.nameKey) }}</span>
-                        </Link>
+        <!-- Main column — desplazado por el SiderZellia de 320px -->
+        <div class="md:pl-80 pt-12 md:pt-0">
+            <!-- Header Zellia: 66px (65 + borde), forma decorativa en sup-der -->
+            <div class="zellia-header sticky top-0 z-30">
+                <div class="zellia-header__shape" aria-hidden="true" />
+                <div class="zellia-header__row">
+                    <div class="flex-1 min-w-0">
+                        <slot name="header">
+                            <span class="zellia-sidebar__tagline">{{ workspaceName }}</span>
+                        </slot>
                     </div>
-                </div>
-            </nav>
-
-            <!-- User pill -->
-            <div class="px-3 py-3 border-t border-border-subtle shrink-0">
-                <Link
-                    :href="route('settings.account.index')"
-                    data-testid="user-menu"
-                    class="flex items-center gap-2.5 w-full px-2 py-1.5 rounded-md hover:bg-surface-overlay transition-colors ds-focus-ring"
-                >
-                    <span class="h-7 w-7 rounded-full bg-surface-overlay grid place-items-center text-[11px] font-semibold text-text-primary shrink-0">
-                        {{ (user?.name || '?').charAt(0).toUpperCase() }}
-                    </span>
-                    <div class="min-w-0 flex-1 text-left">
-                        <p class="text-[13px] font-medium text-text-primary truncate">{{ user?.name }}</p>
-                        <p class="text-[11px] text-text-tertiary truncate">{{ user?.email }}</p>
+                    <div class="zellia-header__items">
+                        <WarehouseSwitcher />
+                        <ThemeToggle />
+                        <NotificationDropdown />
                     </div>
-                </Link>
-            </div>
-        </aside>
-
-        <!-- Main column -->
-        <div class="md:pl-60 pt-12 md:pt-0">
-            <!-- Top strip — sticky, thin -->
-            <div class="sticky top-0 z-30 h-11 flex items-center justify-between gap-3 px-4 md:px-6 bg-surface-canvas/80 backdrop-blur border-b border-border-subtle">
-                <div class="flex-1 min-w-0">
-                    <slot name="header">
-                        <span class="text-xs text-text-tertiary">{{ workspaceName }}</span>
-                    </slot>
-                </div>
-                <div class="flex items-center gap-1 shrink-0">
-                    <WarehouseSwitcher />
-                    <ThemeToggle />
-                    <NotificationDropdown />
                 </div>
             </div>
 

@@ -1,0 +1,761 @@
+/*
+ * Zellia Design System v1.1 — Foundations (port del Apéndice A)
+ * Documento origen: docs/design-system/zellia/ZELLIA-DESIGN-SYSTEM.md
+ *
+ * CAPA 1 — PRIMITIVOS (--zellia-*):  valores crudos de Figma `Foundation`.
+ * CAPA 2 — SEMÁNTICOS  (--surface-*, --text-*, --border-*, --accent, --status-*):
+ *          re-map de los SAME tokens que ya consume tailwind.config.js,
+ *          ahora con los valores Zellia (ver README.md de docs/design-system/zellia).
+ * CAPA 3 — COMPONENTE:  clases .zellia-* (botones 48px, sidebar item 40px,
+ *          header 66px) definidas según los component specs.
+ *          Un componente nunca consume un primitivo directo — si falta el
+ *          semántico, se agrega en la capa 2.
+ *
+ * EVENTO DE DECISIÓN:  este archivo reemplaza los valores Linear-inspired de
+ * design-tokens.css; se importa DESPUÉS de design-tokens.css para ganar on
+ * las declaraciones de igual especificidad.
+ */
+
+/* ============================================================
+   CAPA 1 — PRIMITIVOS Zellia (Lightmode — valores crudos de Figma)
+   ============================================================ */
+:root {
+
+  /* ---- Primario ---- */
+  --zellia-color-primary-100: #F5F9FE;
+  --zellia-color-primary-200: #E6EBEF;
+  --zellia-color-primary-300: #AABFD6;
+  --zellia-color-primary-400: #86A3C2;
+  --zellia-color-primary-500: #6488AD;
+  --zellia-color-primary-600: #436C96;
+  --zellia-color-primary-700: #23527F;
+  --zellia-color-primary-800: #023562; /* Brand Color */
+  --zellia-color-primary-900: #002041;
+
+  /* ---- Secundario ---- */
+  --zellia-color-secondary-100: #EEF5F8;
+  --zellia-color-secondary-200: #C8DEEA;
+  --zellia-color-secondary-300: #A4C7DA;
+  --zellia-color-secondary-400: #7FB1CA;
+  --zellia-color-secondary-500: #5799BA; /* Brand Color */
+  --zellia-color-secondary-600: #4A829E;
+  --zellia-color-secondary-700: #3D6B82;
+  --zellia-color-secondary-800: #305466;
+  --zellia-color-secondary-900: #233D4A;
+
+  /* ---- Acento ---- */
+  --zellia-color-accent-100: #FFF6F2;
+  --zellia-color-accent-200: #FFD2C5;
+  --zellia-color-accent-300: #FFAC95;
+  --zellia-color-accent-400: #FD8C62;
+  --zellia-color-accent-500: #FC4501; /* Base */
+  --zellia-color-accent-600: #D63B01;
+  --zellia-color-accent-700: #B03001;
+  --zellia-color-accent-800: #8B2601;
+  --zellia-color-accent-900: #651C00;
+
+  /* ---- Monocromático ---- */
+  --zellia-color-neutral-100: #F8F8F8;
+  --zellia-color-neutral-200: #E9E9E9;
+  --zellia-color-neutral-300: #CECECE;
+  --zellia-color-neutral-400: #ABABAB;
+  --zellia-color-neutral-500: #7F7F7E;
+  --zellia-color-neutral-600: #595958;
+  --zellia-color-neutral-700: #3D3D3B;
+  --zellia-color-neutral-800: #2D2D2B;
+  --zellia-color-neutral-900: #222220;
+
+  /* ---- Absolutos ---- */
+  --zellia-color-common-white: #FFFFFF;
+  --zellia-color-common-black: #000000;
+
+  /* ---- Alert System ---- */
+  --zellia-color-success-light: #EAFFF1;
+  --zellia-color-success-base:  #22C55E;
+  --zellia-color-success-dark:  #15803D;
+
+  --zellia-color-warning-light: #FFF7D7;
+  --zellia-color-warning-base:  #F59E0B;
+  --zellia-color-warning-dark:  #92400E;
+
+  --zellia-color-error-light:   #FFD7D7;
+  --zellia-color-error-base:    #EF4444;
+  --zellia-color-error-dark:    #991B1B;
+
+  --zellia-color-info-light:    #E6F2FF;
+  --zellia-color-info-base:     #2196F3;
+  --zellia-color-info-dark:     #0D47A1;
+
+  /* ============================================================
+     TIPOGRAFÍA — Inter única familia, 5 pesos, 18 tamaños
+     ============================================================ */
+
+  --zellia-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont,
+                             'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --zellia-font-weight-light:    300;
+  --zellia-font-weight-regular:  400;
+  --zellia-font-weight-medium:   500;
+  --zellia-font-weight-semibold: 600;
+  --zellia-font-weight-bold:     700;
+
+  --zellia-font-size-display:              64px;
+  --zellia-font-size-headline-marketing-1: 48px;
+  --zellia-font-size-headline-marketing-2: 40px;
+  --zellia-font-size-headline-marketing-3: 32px;
+  --zellia-font-size-headline-1:           28px;
+  --zellia-font-size-headline-2:           24px;
+  --zellia-font-size-subtitle-1:           20px;
+  --zellia-font-size-subtitle-2:           18px;
+  --zellia-font-size-body-1:               16px;
+  --zellia-font-size-body-2:               14px;
+  --zellia-font-size-caption-1:            12px;
+  --zellia-font-size-caption-2:            10px;
+  --zellia-font-size-label:                12px;
+  --zellia-font-size-button-giant:         18px;
+  --zellia-font-size-button-large:         16px;
+  --zellia-font-size-button-medium:        14px;
+  --zellia-font-size-button-small:         12px;
+  --zellia-font-size-button-tiny:          10px;
+
+  --zellia-font-line-height-display:              72px;
+  --zellia-font-line-height-headline-marketing-1: 56px;
+  --zellia-font-line-height-headline-marketing-2: 48px;
+  --zellia-font-line-height-headline-marketing-3: 40px;
+  --zellia-font-line-height-headline-1:           36px;
+  --zellia-font-line-height-headline-2:           32px;
+  --zellia-font-line-height-subtitle-1:           28px;
+  --zellia-font-line-height-subtitle-2:           24px;
+  --zellia-font-line-height-body-1:               24px;
+  --zellia-font-line-height-body-2:               20px;
+  --zellia-font-line-height-caption-1:            16px;
+  --zellia-font-line-height-caption-2:            14px;
+  --zellia-font-line-height-label:                16px;
+  --zellia-font-line-height-button-giant:         22px;
+  --zellia-font-line-height-button-large:         18px;
+  --zellia-font-line-height-button-medium:        16px;
+  --zellia-font-line-height-button-small:         14px;
+  --zellia-font-line-height-button-tiny:          12px;
+
+  /* ============================================================
+     SPACING — Grid base 4px (escala completa)
+     ============================================================ */
+  --zellia-space-0:  0px;
+  --zellia-space-2:  2px;
+  --zellia-space-4:  4px;
+  --zellia-space-8:  8px;
+  --zellia-space-12: 12px;
+  --zellia-space-16: 16px;
+  --zellia-space-20: 20px;
+  --zellia-space-24: 24px;
+  --zellia-space-32: 32px;
+  --zellia-space-40: 40px;
+  --zellia-space-48: 48px;
+  --zellia-space-64: 64px;
+  --zellia-space-80: 80px;
+  --zellia-space-96: 96px;
+
+  /* ============================================================
+     BORDER RADIUS
+     ============================================================ */
+  --zellia-radius-none: 0px;
+  --zellia-radius-sm:   4px;
+  --zellia-radius-md:   8px;   /* Default del sistema */
+  --zellia-radius-lg:   12px;
+  --zellia-radius-xl:   16px;
+  --zellia-radius-full: 9999px;
+
+  /* ============================================================
+     ELEVATION / SHADOWS — tintadas con primary.900 rgb(0,32,65)
+     ============================================================ */
+  --zellia-shadow-none: none;
+  --zellia-shadow-xs:   0 1px 2px 0 rgba(0, 32, 65, 0.06);
+  --zellia-shadow-sm:   0 1px 2px 0 rgba(0, 32, 65, 0.06),
+                        0 2px 4px -1px rgba(0, 32, 65, 0.08);
+  --zellia-shadow-md:   0 2px 4px -1px rgba(0, 32, 65, 0.06),
+                        0 4px 8px -2px rgba(0, 32, 65, 0.10);
+  --zellia-shadow-lg:   0 4px 8px -2px rgba(0, 32, 65, 0.08),
+                        0 8px 16px -4px rgba(0, 32, 65, 0.12);
+  --zellia-shadow-xl:   0 8px 16px -4px rgba(0, 32, 65, 0.10),
+                        0 16px 32px -8px rgba(0, 32, 65, 0.14);
+  --zellia-shadow-2xl:  0 16px 32px -8px rgba(0, 32, 65, 0.12),
+                        0 32px 64px -16px rgba(0, 32, 65, 0.18);
+  --zellia-shadow-inner: inset 0 2px 4px 0 rgba(0, 32, 65, 0.06);
+
+  --zellia-shadow-focus-primary: 0 0 0 4px rgba(2, 53, 98, 0.20);
+  --zellia-shadow-focus-accent:  0 0 0 4px rgba(252, 69, 1, 0.20);
+  --zellia-shadow-focus-error:   0 0 0 4px rgba(239, 68, 68, 0.20);
+  --zellia-shadow-focus-success: 0 0 0 4px rgba(34, 197, 94, 0.20);
+
+  --zellia-shadow-transition: box-shadow 150ms ease-out;
+
+  /* ============================================================
+     BUTTONS — alturas fijas; padding vertical derivado (no tokeniza)
+     ============================================================ */
+  --zellia-button-giant-height:  56px;
+  --zellia-button-large-height:  48px;
+  --zellia-button-medium-height: 40px;
+  --zellia-button-small-height:  32px;
+  --zellia-button-tiny-height:   24px;
+
+  --zellia-button-giant-padding-x:  var(--zellia-space-24);
+  --zellia-button-large-padding-x:  var(--zellia-space-20);
+  --zellia-button-medium-padding-x: var(--zellia-space-16);
+  --zellia-button-small-padding-x:  var(--zellia-space-12);
+  --zellia-button-tiny-padding-x:   var(--zellia-space-8);
+
+  --zellia-button-giant-gap:  var(--zellia-space-8);
+  --zellia-button-large-gap:  var(--zellia-space-8);
+  --zellia-button-medium-gap: var(--zellia-space-8);
+  --zellia-button-small-gap:  var(--zellia-space-4);
+  --zellia-button-tiny-gap:   var(--zellia-space-4);
+
+  --zellia-button-giant-icon:  24px;
+  --zellia-button-large-icon:  20px;
+  --zellia-button-medium-icon: 16px;
+  --zellia-button-small-icon:  16px;
+  --zellia-button-tiny-icon:   12px;
+
+  /* ============================================================
+     GRID — Breakpoints + mobile-first (4 → 8 → 12 columnas)
+     ============================================================ */
+  --zellia-breakpoint-mobile:  0px;
+  --zellia-breakpoint-tablet:  768px;
+  --zellia-breakpoint-desktop: 1024px;
+
+  --zellia-grid-columns:   4;
+  --zellia-grid-margin:    var(--zellia-space-16);
+  --zellia-grid-gutter:    var(--zellia-space-16);
+  --zellia-grid-max-width: none;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --zellia-grid-columns: 8;
+    --zellia-grid-margin:  var(--zellia-space-32);
+    --zellia-grid-gutter:  var(--zellia-space-24);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --zellia-grid-columns:   12;
+    --zellia-grid-margin:    var(--zellia-space-48);
+    --zellia-grid-gutter:    var(--zellia-space-24);
+    --zellia-grid-max-width: 1440px;
+  }
+}
+
+/* ============================================================
+   CAPA 2 — SEMÁNTICOS (re-map de los tokens que consume tailwind.config.js)
+   Formato HSL triplet para hsl(var(--x) / <alpha-value>).
+   Light Zellia en :root; Dark Zellia en .dark.
+   Contraste verificado: primary.800 sobre blanco = 10.9:1 (AAA);
+   brand700 #23527F como bg de acción con texto primary.100 = 7.6:1 (AA+).
+   ============================================================ */
+:root {
+  /* Superficies — de la escala Primario: canvas 100, base 100, raised 200-ish */
+  --surface-canvas: 0 0% 100%;          /* blanco puro, canvas neutro */
+  --surface-base: 213.3 81.8% 97.8%;          /* zellia primary.100 — sidebar/header */
+  --surface-raised: 0 0% 97.3%;           /* zellia neutral.100 — cards */
+  --surface-overlay: 198 41.7% 95.3%;       /* zellia secondary.100 — hover/active row */
+  --surface-sunken: 0 0% 91.4%;           /* zellia neutral.200 — wells */
+
+  /* Bordes */
+  --border-subtle: 0 0% 80.8%;            /* zellia neutral.300 — borde por defecto */
+  --border-strong: 0 0% 67.1%;            /* zellia neutral.400 — foco/separador fuerte */
+
+  /* Texto — de la escala Monocromática */
+  --text-primary: 60 3% 12.9%;            /* zellia neutral.900 — titulares */
+  --text-secondary: 60 0.6% 34.7%;          /* zellia neutral.600 — secundario */
+  --text-tertiary: 60 0.4% 49.6%;           /* zellia neutral.500 — terciario */
+  --text-disabled: 0 0% 67.1%;            /* zellia neutral.400 */
+
+  /* Marca — brand = primary.800 del sistema Zellia */
+  --accent: 208.1 96% 19.6%;                /* zellia primary.800 #023562 */
+  --accent-hover: 209.3 56.8% 31.8%;          /* zellia primary.700 #23527F (hover del brand) */
+  --accent-foreground: 0 0% 97.3%;        /* zellia neutral.100 sobre brand */
+  --accent-soft: 213.3 81.8% 97.8%;           /* zellia primary.100 — selected row */
+
+  /* Estados — base solo para icono/borde/relleno; texto usa dark de la familia */
+  --status-success: 142.1 70.6% 45.3%;        /* success.base */
+  --status-success-soft: 140 100% 95.9%;  /* success.light */
+  --status-warning: 37.7 92.1% 50.2%;         /* warning.base */
+  --status-warning-soft: 48 100% 92.2%;   /* warning.light */
+  --status-danger: 0 84.2% 60.2%;           /* error.base */
+  --status-danger-soft: 0 100% 92.2%;     /* error.light */
+  --status-info: 206.6 89.7% 54.1%;           /* info.base */
+  --status-info-soft: 211.2 100% 95.1%;     /* info.light */
+
+  /* Foco — ring 4px de Zellia */
+  --ring: 208.1 96% 19.6%;                  /* rgba(2,53,98,.2) equivale en triplet */
+
+  /* Sombra — tintadas zellia primary.900 rgb(0,32,65) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 32 65 / 0.06);
+  --shadow-md: 0 2px 4px -1px rgb(0 32 65 / 0.06), 0 4px 8px -2px rgb(0 32 65 / 0.10);
+  --shadow-lg: 0 4px 8px -2px rgb(0 32 65 / 0.08), 0 8px 16px -4px rgb(0 32 65 / 0.12);
+
+  /* Radios — default del sistema Zellia: 8 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+.dark {
+  /* Dark Zellia — modo "Darkmode" de la colección Foundation
+     (valores de la tabla de tokens del doc CTA + derivados del crédito visual) */
+  --surface-canvas: 210.5 100% 12.7%;       /* zellia primary.900 — canvas en dark */
+  --surface-base: 210 80% 16%;          /* derivado: base sobre canvas */
+  --surface-raised: 210 60% 20%;
+  --surface-overlay: 210 50% 24%;
+  --surface-sunken: 203.6 80.5% 26.1%;        /* zellia dark primary.300 */
+
+  --border-subtle: 60 1.6% 23.9%;           /* zellia dark mono.300 */
+  --border-strong: 60 1.6% 34%;
+
+  --text-primary: 60 4.8% 95.9%;            /* zellia dark mono.900 */
+  --text-secondary: 60 1.5% 74.1%;          /* zellia dark mono.700 */
+  --text-tertiary: 60 1.3% 46.1%;           /* zellia dark mono.500 */
+  --text-disabled: 60 1.6% 23.9%;
+
+  --accent: 201 50.3% 70%;                /* zellia dark primary.700 #8CBED9 */
+  --accent-hover: 200.6 46.8% 57.3%;          /* zellia dark primary.600 */
+  --accent-foreground: 210.5 100% 12.7%;    /* texto oscuro sobre brand claro */
+  --accent-soft: 203.6 80.5% 26.1%;           /* selected row dark */
+
+  --status-success: 142 64% 52%;
+  --status-success-soft: 142 30% 16%;
+  --status-warning: 38 92% 60%;
+  --status-warning-soft: 38 30% 16%;
+  --status-danger: 0 84% 65%;
+  --status-danger-soft: 0 30% 18%;
+  --status-info: 207 90% 65%;
+  --status-info-soft: 212 30% 18%;
+
+  --ring: 201 50.3% 70%;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 32 65 / 0.4);
+  --shadow-md: 0 2px 4px -1px rgb(0 32 65 / 0.5), 0 4px 8px -2px rgb(0 32 65 / 0.3);
+  --shadow-lg: 0 4px 12px -2px rgb(0 32 65 / 0.6), 0 2px 6px -2px rgb(0 32 65 / 0.4);
+
+  /* Radios iguales en dark (radius es decisión de sistema) */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+
+/* ============================================================
+   CAPA 3 — TIPOGRAFÍA: clases de rol + pesos (§2.9 del design system)
+   ============================================================ */
+.zellia-display, .zellia-headline-marketing-1, .zellia-headline-marketing-2,
+.zellia-headline-marketing-3, .zellia-headline-1, .zellia-headline-2,
+.zellia-subtitle-1, .zellia-subtitle-2, .zellia-body-1, .zellia-body-2,
+.zellia-caption-1, .zellia-caption-2, .zellia-label,
+.zellia-button-giant, .zellia-button-large, .zellia-button-medium,
+.zellia-button-small, .zellia-button-tiny {
+  font-family: var(--zellia-font-family-base);
+}
+.zellia-display              { font-size: var(--zellia-font-size-display);              line-height: var(--zellia-font-line-height-display); }
+.zellia-headline-marketing-1 { font-size: var(--zellia-font-size-headline-marketing-1); line-height: var(--zellia-font-line-height-headline-marketing-1); }
+.zellia-headline-marketing-2 { font-size: var(--zellia-font-size-headline-marketing-2); line-height: var(--zellia-font-line-height-headline-marketing-2); }
+.zellia-headline-marketing-3 { font-size: var(--zellia-font-size-headline-marketing-3); line-height: var(--zellia-font-line-height-headline-marketing-3); }
+.zellia-headline-1           { font-size: var(--zellia-font-size-headline-1);           line-height: var(--zellia-font-line-height-headline-1); }
+.zellia-headline-2           { font-size: var(--zellia-font-size-headline-2);           line-height: var(--zellia-font-line-height-headline-2); }
+.zellia-subtitle-1           { font-size: var(--zellia-font-size-subtitle-1);           line-height: var(--zellia-font-line-height-subtitle-1); }
+.zellia-subtitle-2           { font-size: var(--zellia-font-size-subtitle-2);           line-height: var(--zellia-font-line-height-subtitle-2); }
+.zellia-body-1               { font-size: var(--zellia-font-size-body-1);               line-height: var(--zellia-font-line-height-body-1); }
+.zellia-body-2               { font-size: var(--zellia-font-size-body-2);               line-height: var(--zellia-font-line-height-body-2); }
+.zellia-caption-1            { font-size: var(--zellia-font-size-caption-1);            line-height: var(--zellia-font-line-height-caption-1); }
+.zellia-caption-2            { font-size: var(--zellia-font-size-caption-2);            line-height: var(--zellia-font-line-height-caption-2); }
+.zellia-label                { font-size: var(--zellia-font-size-label);                line-height: var(--zellia-font-line-height-label); }
+.zellia-button-giant         { font-size: var(--zellia-font-size-button-giant);         line-height: var(--zellia-font-line-height-button-giant); }
+.zellia-button-large         { font-size: var(--zellia-font-size-button-large);         line-height: var(--zellia-font-line-height-button-large); }
+.zellia-button-medium        { font-size: var(--zellia-font-size-button-medium);        line-height: var(--zellia-font-line-height-button-medium); }
+.zellia-button-small         { font-size: var(--zellia-font-size-button-small);         line-height: var(--zellia-font-line-height-button-small); }
+.zellia-button-tiny          { font-size: var(--zellia-font-size-button-tiny);          line-height: var(--zellia-font-line-height-button-tiny); }
+
+.zellia-w-light    { font-weight: var(--zellia-font-weight-light); }
+.zellia-w-regular  { font-weight: var(--zellia-font-weight-regular); }
+.zellia-w-medium   { font-weight: var(--zellia-font-weight-medium); }
+.zellia-w-semibold { font-weight: var(--zellia-font-weight-semibold); }
+.zellia-w-bold     { font-weight: var(--zellia-font-weight-bold); }
+
+/* ============================================================
+   CAPA 3 — COMPONENTE: CTA Buttons (Zellia-CTA-Dashboard-Specs.md)
+   Base comun: 48px, radius 8, padding-x 16, gap 8, Inter 16/18
+   ============================================================ */
+.zellia-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--zellia-space-8);
+  height: 48px;
+  padding: 0 var(--zellia-space-16);
+  border-radius: var(--zellia-radius-md);
+  font-family: var(--zellia-font-family-base);
+  font-size: var(--zellia-font-size-button-large);
+  line-height: var(--zellia-font-line-height-button-large);
+  font-weight: var(--zellia-font-weight-medium);
+  letter-spacing: 0;  /* spec Zellia: 0% — cancela el -0.01em del body */
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out;
+}
+.zellia-cta svg { width: var(--zellia-button-large-icon); height: var(--zellia-button-large-icon); }
+
+.zellia-cta-principal               { background: var(--zellia-color-primary-700); color: var(--zellia-color-neutral-100); box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05); }
+.zellia-cta-principal:hover         { background: var(--zellia-color-primary-600); }
+.zellia-cta-principal:active        { background: var(--zellia-color-secondary-900); }
+.zellia-cta-principal:disabled      { background: var(--zellia-color-primary-300); color: var(--zellia-color-neutral-200); cursor: not-allowed; }
+
+.zellia-cta-secondary               { background: var(--zellia-color-neutral-900); color: var(--zellia-color-neutral-100); font-weight: var(--zellia-font-weight-semibold); }
+.zellia-cta-secondary:hover         { background: var(--zellia-color-neutral-700); }
+.zellia-cta-secondary:disabled      { background: var(--zellia-color-neutral-300); color: var(--zellia-color-neutral-100); cursor: not-allowed; }
+
+.zellia-cta-outline                 { background: transparent; border-color: var(--zellia-color-neutral-500); color: var(--zellia-color-neutral-700); font-weight: var(--zellia-font-weight-semibold); }
+.zellia-cta-outline:hover           { border-color: var(--zellia-color-neutral-800); color: var(--zellia-color-neutral-900); }
+.zellia-cta-outline:disabled        { border-color: var(--zellia-color-neutral-300); color: var(--zellia-color-neutral-300); cursor: not-allowed; }
+
+.zellia-cta:focus-visible            { outline: none; background-color: inherit; box-shadow: 0 0 0 4px rgba(2, 53, 98, 0.20); }
+.zellia-cta-principal:focus-visible  { box-shadow: 0 0 0 4px rgba(2, 53, 98, 0.20); }
+.zellia-cta-secondary:focus-visible  { box-shadow: 0 0 0 4px rgba(34, 34, 32, 0.25); }
+.zellia-cta-outline:focus-visible    { box-shadow: 0 0 0 4px rgba(127, 127, 126, 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .zellia-cta { transition: none; }
+}
+
+/* ============================================================
+   CAPA 3 — COMPONENTE: Sidebar item (ZELLIA-COMPONENT-SPECS-sidebar.md §1)
+   40px alto, radius 8, padding 8/16/8/8, gap 8, Inter 16/18
+   ============================================================ */
+.zellia-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--zellia-space-8);
+  height: 40px;
+  padding: var(--zellia-space-8) var(--zellia-space-16)
+           var(--zellia-space-8) var(--zellia-space-8);
+  border-radius: var(--zellia-radius-md);
+  font-family: var(--zellia-font-family-base);
+  font-size: var(--zellia-font-size-button-large);
+  line-height: var(--zellia-font-line-height-button-large);
+  font-weight: var(--zellia-font-weight-regular);
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+.zellia-sidebar-item__icon { width: 24px; height: 24px; flex: 0 0 auto; }
+
+.zellia-sidebar-item                        { color: var(--zellia-color-neutral-800); }
+.zellia-sidebar-item:hover                  { background: var(--zellia-color-secondary-200); color: var(--zellia-color-neutral-800); }
+.zellia-sidebar-item[aria-current='page']   { background: var(--zellia-color-secondary-500); color: var(--zellia-color-neutral-100); font-weight: var(--zellia-font-weight-medium); }
+
+.dark .zellia-sidebar-item                      { color: var(--zellia-color-neutral-100); }
+.dark .zellia-sidebar-item:hover                { background: rgba(134, 163, 194, 0.65); color: var(--zellia-color-neutral-100); }
+.dark .zellia-sidebar-item[aria-current='page'] { background: var(--zellia-color-primary-800); color: var(--zellia-color-neutral-100); }
+
+.zellia-sidebar-item:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(2, 53, 98, 0.20); }
+
+@media (prefers-reduced-motion: reduce) {
+  .zellia-sidebar-item { transition: none; }
+}
+
+/* ============================================================
+   CAPA 3 — COMPONENTE: Header (ZELLIA-HEADER-SPECS.md)
+   66px total = 65px + borde 1px; padding 12/24; borde inferior Mono/300;
+   forma decorativa: circulo secondary.400 al 8% en esquina sup-der
+   ============================================================ */
+.zellia-header {
+  box-sizing: border-box;
+  height: 65px;
+  padding: var(--zellia-space-12) var(--zellia-space-24);
+  border-bottom: 1px solid var(--zellia-color-neutral-300);
+  background: var(--zellia-color-primary-100);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dark .zellia-header { background: var(--zellia-color-primary-900); }
+
+.zellia-header__shape {
+  position: absolute;
+  width: 153px;
+  height: 153px;
+  right: -26px;
+  top: -19px;
+  border-radius: var(--zellia-radius-full);
+  background: var(--zellia-color-secondary-400);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.zellia-header__row {
+  display: flex;
+  align-items: center;
+  gap: var(--zellia-space-16);
+  min-height: 41px;
+}
+
+.zellia-header__items { flex: 0 0 auto; display: flex; align-items: center; gap: var(--zellia-space-16); }
+
+.zellia-header__breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--zellia-space-8);
+  height: 40px;
+  padding-inline: var(--zellia-space-12);
+  border-radius: var(--zellia-radius-md);
+  font-family: var(--zellia-font-family-base);
+  font-weight: var(--zellia-font-weight-medium);
+  font-size: var(--zellia-font-size-button-large);
+  line-height: var(--zellia-font-line-height-button-large);
+  color: var(--zellia-color-neutral-900);
+}
+.dark .zellia-header__breadcrumb { color: var(--zellia-color-common-white); }
+
+.zellia-header__avatar {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--zellia-radius-full);
+  background: #0F489D;
+  display: grid;
+  place-items: center;
+  font-family: var(--zellia-font-family-base);
+  font-weight: var(--zellia-font-weight-medium);
+  font-size: var(--zellia-font-size-body-2);
+  line-height: var(--zellia-font-line-height-body-2);
+  color: var(--zellia-color-neutral-100);
+}
+.zellia-header__avatar::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 9.3px;
+  height: 9.3px;
+  border-radius: var(--zellia-radius-full);
+  background: #00C097;
+}
+
+/* ============================================================
+   CAPA 3 — COMPONENTE: SiderZellia (spec §2 completo)
+   320px ancho, padding 16, gap 12, fondo primary.100 (Light) /
+   primary.900 (Dark), borde derecho 1px Mono/300 (solo Light),
+   formas decorativas clip-eadas (clipsContent del spec).
+   ============================================================ */
+.zellia-sidebar {
+  position: fixed;
+  inset-block: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: var(--zellia-space-12);
+  width: 320px;
+  height: 100vh;
+  padding: var(--zellia-space-16);
+  overflow: hidden;                 /* clipsContent: recorta las formas */
+  background: var(--zellia-color-primary-100);   /* Light */
+  border-right: 1px solid var(--zellia-color-neutral-300);
+  box-sizing: border-box;
+  transform: translateX(-100%);
+  transition: transform 200ms ease-out;
+}
+.dark .zellia-sidebar {
+  background: var(--zellia-color-primary-900);
+  border-right: none;               /* Dark no lleva borde según spec */
+}
+@media (min-width: 768px) {
+  .zellia-sidebar { transform: none; }
+}
+.zellia-sidebar--open { transform: translateX(0); }
+
+/* Formas decorativas de fondo — §2.8 (6 lados y circulo, rot 81deg) */
+.zellia-sidebar__shape {
+  position: absolute;
+  width: 377px;
+  height: 381px;
+  transform: rotate(81deg);
+  pointer-events: none;
+}
+.zellia-sidebar__shape--1 { left: 23px;  top: 308px; border-radius: 20px; }
+.zellia-sidebar__shape--2 { left: -187px; top: 944px; }
+.zellia-sidebar__shape--1 { background: var(--zellia-color-secondary-600); opacity: .07; }  /* Light */
+.zellia-sidebar__shape--2 { background: var(--zellia-color-primary-600);   opacity: .07; }
+.dark .zellia-sidebar__shape--1 { background: var(--zellia-color-secondary-400); opacity: .05; }
+.dark .zellia-sidebar__shape--2 { background: var(--zellia-color-primary-500);   opacity: .05; }
+
+/* Header del sidebar: marca + botón colapso, 45px (§2.4) */
+.zellia-sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: var(--zellia-space-16);
+  height: 45px;
+  flex: 0 0 auto;
+  position: relative;   /* sobre las formas */
+  z-index: 1;
+}
+.zellia-sidebar__brand { flex: 1 1 auto; display: flex; flex-direction: column; gap: 0; }
+.zellia-sidebar__logo { height: 29px; width: 65px; display: block; }
+.zellia-sidebar__tagline {
+  font-family: var(--zellia-font-family-base);
+  font-weight: var(--zellia-font-weight-regular);
+  font-size: var(--zellia-font-size-caption-1);      /* 12 */
+  line-height: var(--zellia-font-line-height-caption-1); /* 16 */
+  color: var(--zellia-color-neutral-600);           /* Light */
+}
+.dark .zellia-sidebar__tagline { color: var(--zellia-color-neutral-200); }
+
+/* Buscador + envío (§2.5): 36px alto, radius lg=12 en el input */
+.zellia-sidebar__search-row {
+  display: flex;
+  align-items: center;
+  gap: var(--zellia-space-8);
+  height: 36px;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.zellia-sidebar__search {
+  flex: 1 1 auto;
+  height: 36px;
+  padding: var(--zellia-space-4) var(--zellia-space-12);
+  border-radius: var(--zellia-radius-lg);          /* 12 */
+  display: flex;
+  align-items: center;
+  gap: var(--zellia-space-8);
+  background: var(--zellia-color-primary-200);     /* Light */
+  color: var(--zellia-color-neutral-900);
+  font-family: var(--zellia-font-family-base);
+  font-size: var(--zellia-font-size-body-2);
+  line-height: var(--zellia-font-line-height-body-2);
+}
+.zellia-sidebar__search input {
+  border: none; background: transparent; outline: none;
+  width: 100%; color: inherit;
+  font: inherit;
+}
+.zellia-sidebar__search input::placeholder { color: inherit; opacity: .85; }
+.dark .zellia-sidebar__search { background: var(--zellia-color-neutral-700); color: var(--zellia-color-neutral-100); }
+.zellia-sidebar__search:focus-within { box-shadow: 0 0 0 4px rgba(2, 53, 98, 0.20); }
+
+.zellia-sidebar__send {
+  flex: 0 0 auto;
+  width: 36px; height: 36px;
+  border-radius: var(--zellia-radius-full);
+  display: grid; place-items: center;
+  background: var(--zellia-color-primary-200);
+  color: var(--zellia-color-neutral-900);
+  border: none; cursor: pointer;
+}
+.dark .zellia-sidebar__send { background: var(--zellia-color-neutral-700); color: var(--zellia-color-neutral-100); }
+
+/* Navegación principal: FILL/FILL, gap 8, grupos con gap 4 (§2.6) */
+.zellia-sidebar__main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--zellia-space-8);
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+}
+.zellia-sidebar__divider { height: 1px; background: var(--zellia-color-neutral-400); flex: 0 0 auto; }
+.zellia-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zellia-space-12);      /* entre grupos */
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.zellia-sidebar__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zellia-space-4);       /* entre items */
+}
+.zellia-sidebar__group-title {
+  font-family: var(--zellia-font-family-base);
+  font-weight: var(--zellia-font-weight-medium);
+  font-size: var(--zellia-font-size-body-2);        /* 14 */
+  line-height: var(--zellia-font-line-height-body-2); /* 20 */
+  color: var(--zellia-color-neutral-900);           /* Light */
+}
+.dark .zellia-sidebar__group-title { color: var(--zellia-color-neutral-100); }
+.zellia-sidebar__nav .zellia-sidebar-item { width: 100%; }
+
+/* CTA user switcher inferior: 32px, padding 8/12, gap 8, radius 8 (§2.7) */
+.zellia-sidebar__cta {
+  flex: 0 0 auto;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: var(--zellia-space-8);
+  padding: 0 var(--zellia-space-12);
+  border-radius: var(--zellia-radius-md);
+  background: transparent;
+  font-family: var(--zellia-font-family-base);
+  font-size: var(--zellia-font-size-button-large);
+  line-height: var(--zellia-font-line-height-button-large);
+  font-weight: var(--zellia-font-weight-regular);
+  color: var(--zellia-color-neutral-900);           /* Light */
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.dark .zellia-sidebar__cta { color: var(--zellia-color-neutral-100); }
+.zellia-sidebar__cta-text { flex: 1 1 auto; text-align: left; }
+.zellia-sidebar__cta .zellia-sidebar-item__icon { width: 24px; height: 24px; }
+
+/* ============================================================
+   CAPA 3 — Soporte del ui/Button (variantes y alturas extra)
+   El .zellia-cta base pinta 48px; los tamaños xs/sm/md/lg overridean
+   a la escala Zellia 24/32/40/48 (spec §6.1).
+   ============================================================ */
+.zellia-h-24 { height: 24px; padding-inline: var(--zellia-space-8);  border-radius: var(--zellia-radius-sm); }
+.zellia-h-32 { height: 32px; padding-inline: var(--zellia-space-12); border-radius: var(--zellia-radius-sm); }
+.zellia-h-40 { height: 40px; padding-inline: var(--zellia-space-16); }
+.zellia-h-48 { height: 48px; padding-inline: var(--zellia-space-20); }
+.zellia-w-40 { width: 40px; padding-inline: 0; }
+
+.zellia-fs-buttonTiny   { font-size: var(--zellia-font-size-button-tiny);   line-height: var(--zellia-font-line-height-button-tiny); }
+.zellia-fs-buttonSmall  { font-size: var(--zellia-font-size-button-small);  line-height: var(--zellia-font-line-height-button-small); }
+.zellia-fs-buttonMedium { font-size: var(--zellia-font-size-button-medium); line-height: var(--zellia-font-line-height-button-medium); }
+.zellia-fs-buttonLarge  { font-size: var(--zellia-font-size-button-large);  line-height: var(--zellia-font-line-height-button-large); }
+
+/* Ghost — terciario sin caja (usa Mono/600, hover surface) */
+.zellia-cta-ghost { background: transparent; color: var(--zellia-color-neutral-600); }
+.zellia-cta-ghost:hover { background: var(--surface-overlay); color: var(--zellia-color-neutral-900); }
+.zellia-cta-ghost:disabled { background: transparent; color: var(--zellia-color-neutral-400); }
+
+/* Danger — Error family: fondo error.base, texto blanco; hover error.dark */
+.zellia-cta-danger   { background: var(--zellia-color-error-base); color: var(--zellia-color-common-white); }
+.zellia-cta-danger:hover { background: var(--zellia-color-error-dark); }
+.zellia-cta-danger:disabled { background: var(--zellia-color-neutral-300); color: var(--zellia-color-neutral-100); }
+.zellia-cta-danger:focus-visible { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.20); }
+
+/* Link de acción inline — regular 400, sin caja, sin uppercase (spec §6.1) */
+.zellia-cta-link {
+  background: transparent; border: none; color: var(--accent);
+  font-weight: var(--zellia-font-weight-regular);
+  height: auto; padding: 0;
+  text-decoration: none;
+  border-radius: var(--zellia-radius-none);
+}
+.zellia-cta-link:hover { text-decoration: underline; color: var(--zellia-color-primary-700); }
+.zellia-cta-link:disabled { color: var(--zellia-color-neutral-400); cursor: not-allowed; }
+.zellia-cta-link:focus-visible { text-decoration: underline; box-shadow: 0 0 0 4px rgba(2, 53, 98, 0.20); border-radius: var(--zellia-radius-sm); }
+
+/* Spinner de loading — 16px (icono medium) */
+.zellia-btn-spinner { width: 16px; height: 16px; flex: 0 0 auto; animation: zellia-spin 1s linear infinite; }
+@keyframes zellia-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .zellia-btn-spinner { animation: none; } }

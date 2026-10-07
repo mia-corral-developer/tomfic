@@ -8,9 +8,11 @@ defineProps({
 </script>
 
 <template>
+    <!-- Zellia CTA Secondary: fondo Mono/900, SemiBold, 48px -->
     <button
         :type="type"
-        class="inline-flex items-center rounded-md border border-border-subtle bg-surface-base px-4 py-2 text-xs font-semibold uppercase tracking-widest text-text-secondary shadow-sm transition duration-150 ease-in-out hover:bg-surface-overlay ds-focus-ring disabled:opacity-25"
+        class="zellia-cta zellia-cta-secondary"
+        :disabled="$attrs.disabled || undefined"
     >
         <slot />
     </button>

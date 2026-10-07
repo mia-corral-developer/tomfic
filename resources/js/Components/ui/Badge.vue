@@ -3,6 +3,11 @@ import { computed } from 'vue';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
+/*
+ * Badge — Zellia Alert System (§1.5): fondo light, texto dark de la MISMA
+ * familia (única pareja válida), borde base al 20%. Dot = base. neutral
+ * usa Mono. Radios: sm (4) para controles pequeños.
+ */
 const props = defineProps({
     variant: {
         type: String,
@@ -18,38 +23,54 @@ const props = defineProps({
 });
 
 const badge = cva(
-    'inline-flex items-center gap-1.5 rounded-md font-medium border tracking-tight',
+    'inline-flex items-center gap-1.5 rounded-md font-medium tracking-tight zellia-badge',
     {
         variants: {
             variant: {
-                neutral: 'bg-surface-overlay text-text-secondary border-border-subtle',
-                brand: 'bg-brand-soft text-brand border-brand/20',
-                success: 'bg-status-success-soft text-status-success border-status-success/20',
-                warning: 'bg-status-warning-soft text-status-warning border-status-warning/20',
-                danger: 'bg-status-danger-soft text-status-danger border-status-danger/20',
-                info: 'bg-status-info-soft text-status-info border-status-info/20',
+                neutral: 'zellia-badge-neutral',
+                brand: 'zellia-badge-brand',
+                success: 'zellia-badge-success',
+                warning: 'zellia-badge-warning',
+                danger: 'zellia-badge-danger',
+                info: 'zellia-badge-info',
             },
             size: {
-                sm: 'h-5 px-1.5 text-[10px]',
-                md: 'h-6 px-2 text-xs',
+                sm: 'zellia-badge--sm',
+                md: 'zellia-badge--md',
             },
         },
     }
 );
-
-const dotColor = computed(() => ({
-    neutral: 'bg-text-tertiary',
-    brand: 'bg-brand',
-    success: 'bg-status-success',
-    warning: 'bg-status-warning',
-    danger: 'bg-status-danger',
-    info: 'bg-status-info',
-})[props.variant]);
 </script>
 
 <template>
     <span :class="cn(badge({ variant, size }))">
-        <span v-if="dot" :class="['h-1.5 w-1.5 rounded-full', dotColor]" />
+        <span v-if="dot" :class="['zellia-badge__dot']" />
         <slot />
     </span>
 </template>
+
+<style scoped>
+.zellia-badge { line-height: var(--zellia-font-line-height-label); }
+.zellia-badge--sm { height: 20px; padding-inline: var(--zellia-space-4); font-size: var(--zellia-font-size-caption-2); border-radius: var(--zellia-radius-sm); }
+.zellia-badge--md { height: 24px; padding-inline: var(--zellia-space-8); font-size: var(--zellia-font-size-caption-1); border-radius: var(--zellia-radius-sm); }
+.zellia-badge__dot { height: 6px; width: 6px; border-radius: var(--zellia-radius-full); flex: 0 0 auto; }
+
+.zellia-badge-neutral { background: var(--surface-overlay); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
+.zellia-badge-neutral .zellia-badge__dot { background: var(--text-tertiary); }
+
+.zellia-badge-brand   { background: var(--zellia-color-primary-100); color: var(--zellia-color-primary-900); border: 1px solid rgba(2, 53, 98, 0.2); }
+.zellia-badge-brand .zellia-badge__dot { background: var(--zellia-color-primary-800); }
+
+.zellia-badge-success { background: var(--status-success-soft); color: var(--zellia-color-success-dark); border: 1px solid rgba(34, 197, 94, 0.2); }
+.zellia-badge-success .zellia-badge__dot { background: var(--status-success); }
+
+.zellia-badge-warning { background: var(--status-warning-soft); color: var(--zellia-color-warning-dark); border: 1px solid rgba(245, 158, 11, 0.2); }
+.zellia-badge-warning .zellia-badge__dot { background: var(--status-warning); }
+
+.zellia-badge-danger  { background: var(--status-danger-soft); color: var(--zellia-color-error-dark); border: 1px solid rgba(239, 68, 68, 0.2); }
+.zellia-badge-danger .zellia-badge__dot { background: var(--status-danger); }
+
+.zellia-badge-info    { background: var(--status-info-soft); color: var(--zellia-color-info-dark); border: 1px solid rgba(33, 150, 243, 0.2); }
+.zellia-badge-info .zellia-badge__dot { background: var(--status-info); }
+</style>

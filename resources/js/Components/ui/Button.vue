@@ -4,6 +4,15 @@ import { Link } from '@inertiajs/vue3';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
+/*
+ * Button — migrado a Zellia (docs/design-system/zellia/Zellia-CTA-Dashboard-Specs.md).
+ * API intacta: variantes y tamaños existentes se mapean a la escala Zellia:
+ *   variantes → Principal (p700→600→sec900→p300), Secundary (Mono/900→700→300),
+ *   Outline (borde Mono/500→800→300); danger mantiene error.base, link sin caja.
+ *   tamaños → escala de alturas Zellia 24/32/40/48 con radius md (8) —
+ *   los tamaños xs→lg equivalen a Tiny/Small/Medium/Large del sistema.
+ * Base tipográfica: Inter, sin uppercase, letter-spacing 0 (spec §CTA).
+ */
 const props = defineProps({
     variant: {
         type: String,
@@ -27,34 +36,23 @@ const props = defineProps({
 });
 
 const button = cva(
-    'inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium ' +
-    'transition-colors duration-100 ds-focus-ring ' +
-    'disabled:pointer-events-none disabled:opacity-50',
+    'zellia-cta', // base Zellia: 40px (medium)… ver override de tamaño por variante
     {
         variants: {
             variant: {
-                default:
-                    'bg-brand text-brand-foreground hover:bg-brand-hover ' +
-                    'shadow-xs',
-                secondary:
-                    'bg-surface-overlay text-text-primary hover:bg-surface-sunken ' +
-                    'border border-border-subtle',
-                ghost:
-                    'text-text-secondary hover:bg-surface-overlay hover:text-text-primary',
-                outline:
-                    'border border-border-strong bg-surface-canvas text-text-primary ' +
-                    'hover:bg-surface-overlay',
-                danger:
-                    'bg-status-danger text-white hover:opacity-90 shadow-xs',
-                link:
-                    'text-brand hover:underline underline-offset-4 px-0',
+                default: 'zellia-cta-principal',
+                secondary: 'zellia-cta-secondary',
+                ghost: 'zellia-cta-ghost',
+                outline: 'zellia-cta-outline',
+                danger: 'zellia-cta-danger',
+                link: 'zellia-cta-link',
             },
             size: {
-                xs: 'h-7 px-2 text-xs rounded-md',
-                sm: 'h-8 px-3 text-xs rounded-md',
-                md: 'h-9 px-3.5 text-sm rounded-md',
-                lg: 'h-10 px-5 text-sm rounded-lg',
-                icon: 'h-8 w-8 rounded-md',
+                xs: 'zellia-h-24 zellia-px-8 zellia-fs-buttonTiny zellia-radius-sm',
+                sm: 'zellia-h-32 zellia-px-12 zellia-fs-buttonSmall zellia-radius-sm',
+                md: 'zellia-h-40 zellia-px-16 zellia-fs-buttonMedium',
+                lg: 'zellia-h-48 zellia-px-20 zellia-fs-buttonLarge',
+                icon: 'zellia-h-40 zellia-w-40 zellia-px-0',
             },
         },
         defaultVariants: { variant: 'default', size: 'md' },
@@ -79,7 +77,7 @@ const ComponentTag = computed(() => {
     >
         <svg
             v-if="loading"
-            class="h-3.5 w-3.5 animate-spin"
+            class="zellia-btn-spinner"
             fill="none"
             viewBox="0 0 24 24"
         >

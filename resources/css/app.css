@@ -1,4 +1,5 @@
-@import './design-tokens.css';
+@import './zellia.css';   /* Zellia Design System v1.1 — CAPA 1 primitivos + CAPA 3 componentes */
+@import './design-tokens.css';   /* Linear legacy — CAPA 2 se define en zellia.css; este archivo ya no define colores */
 
 @tailwind base;
 @tailwind components;
