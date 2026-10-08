@@ -659,7 +659,13 @@
 }
 .dark .zellia-sidebar__send { background: var(--zellia-color-neutral-700); color: var(--zellia-color-neutral-100); }
 
-/* Navegación principal: FILL/FILL, gap 8, grupos con gap 4 (§2.6) */
+/* Navegación principal: FILL/FILL, gap 8, grupos con gap 4 (§2.6)
+   UXF-01: cuando el nav desborda (16+ items), los últimos ítems quedan a
+   un scroll de ~20px. Se conserva el scroll (spec §2.6 contempla que la
+   navegación crezca), y se garantiza que el último ítem NUCA quede cortado
+   a medias: scroll-padding-bottom deja un respiro de 40px. */
+
+
 .zellia-sidebar__main {
   flex: 1 1 auto;
   display: flex;
@@ -677,7 +683,15 @@
   overflow-y: auto;
   flex: 1 1 auto;
   min-height: 0;
+  /* UXF-01: el último ítem nunca queda a medio cortar en el corte del viewport */
+  scroll-snap-type: y proximity;
+  scroll-padding-bottom: var(--zellia-space-40);
+  padding-bottom: var(--zellia-space-8);
 }
+/* Última sección admite colapso con un click en el título (accesible) */
+.zellia-sidebar__group:last-child > .zellia-sidebar__group-title { cursor: pointer; }
+.zellia-sidebar__group:last-child.is-collapsed .zellia-sidebar__item { display: none; }
+.zellia-sidebar__group:last-child.is-collapsed::after { content: "+" !important; margin-left: auto; }
 .zellia-sidebar__group {
   display: flex;
   flex-direction: column;
@@ -759,3 +773,29 @@
 .zellia-btn-spinner { width: 16px; height: 16px; flex: 0 0 auto; animation: zellia-spin 1s linear infinite; }
 @keyframes zellia-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .zellia-btn-spinner { animation: none; } }
+
+/* ============================================================
+   CAPA 3 — Skeleton de carga (UXF-04): feedback < 400 ms al navegar.
+   Bloques con shimmer sutil, canvas y radius del sistema.
+   ============================================================ */
+.zellia-skeleton-shim {
+  background: linear-gradient(90deg,
+    var(--surface-raised) 25%,
+    var(--surface-overlay) 50%,
+    var(--surface-raised) 75%);
+  background-size: 200% 100%;
+  animation: zellia-shimmer 1.4s ease-out infinite;
+  border-radius: var(--zellia-radius-md);
+}
+.dark .zellia-skeleton-shim {
+  background: linear-gradient(90deg,
+    var(--surface-raised) 25%,
+    var(--surface-overlay) 50%,
+    var(--surface-raised) 75%);
+  background-size: 200% 100%;
+  animation: zellia-shimmer 1.4s ease-out infinite;
+}
+@keyframes zellia-shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .zellia-skeleton-shim { animation: none; }
+}

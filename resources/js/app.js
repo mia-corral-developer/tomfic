@@ -70,6 +70,10 @@ createInertiaApp({
             .mount(el);
     },
     progress: {
-        color: '#4B5563',
+        // UXF-04 (scorecard): feedback < 400 ms. Barra visible inmediatamente
+        // al navegar (delay 0) y color navy de Zellia primary.700.
+        color: '#23527F',
+        delay: 0,
+        showSpinner: false,
     },
 });

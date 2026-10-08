@@ -4,13 +4,15 @@ import PageHeader from '@/Components/ui/PageHeader.vue';
 import Card from '@/Components/ui/Card.vue';
 import Button from '@/Components/ui/Button.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Users } from 'lucide-vue-next';
 
 import { useI18n } from 'vue-i18n';
 const props = defineProps({
     organization: Object,
     user: Object,
+    // Booleana computada en el controller (el accessor del modelo no serializa)
+    isAdmin: { type: Boolean, default: false },
 });
 
 
@@ -49,7 +51,7 @@ const submitRegional = () => {
     });
 };
 
-const isAdmin = props.user.is_admin;
+const isAdmin = computed(() => props.isAdmin || Boolean(props.user?.is_admin));
 
 const fieldLabel = 'mb-1 block text-sm font-medium text-text-secondary';
 const fieldInput = 'h-9 w-full rounded-md border border-border-subtle bg-surface-canvas px-3 text-sm text-text-primary placeholder:text-text-tertiary ds-focus-ring disabled:cursor-not-allowed disabled:opacity-60';

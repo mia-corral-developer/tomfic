@@ -109,12 +109,14 @@ const toggles = [
         <PageHeader :title="t('settings.account.title')" description="Manage your profile, password, notifications, and preferences." />
 
         <!-- Tabs -->
+        <!-- UXF-05: nav de pestañas con overflow-x auto; en 320px (reflow WCAG 1.4.10)
+             las pestañas hacen scroll horizontal en su propio carril sin desbordar la página -->
         <div class="mt-6 border-b border-border-subtle">
-            <nav class="-mb-px flex gap-8">
+            <nav class="-mb-px flex gap-8 overflow-x-auto ds-scroll" style="scrollbar-width: thin">
                 <button
                     @click="activeTab = 'profile'"
                     :class="[
-                        'border-b-2 px-1 py-3 text-sm font-medium transition-colors',
+                        'flex-shrink-0 border-b-2 px-1 py-3 text-sm font-medium transition-colors',
                         activeTab === 'profile'
                             ? 'border-brand text-brand'
                             : 'border-transparent text-text-tertiary hover:border-border-strong hover:text-text-secondary'
@@ -125,7 +127,7 @@ const toggles = [
                 <button
                     @click="activeTab = 'password'"
                     :class="[
-                        'border-b-2 px-1 py-3 text-sm font-medium transition-colors',
+                        'flex-shrink-0 border-b-2 px-1 py-3 text-sm font-medium transition-colors',
                         activeTab === 'password'
                             ? 'border-brand text-brand'
                             : 'border-transparent text-text-tertiary hover:border-border-strong hover:text-text-secondary'
@@ -136,7 +138,7 @@ const toggles = [
                 <button
                     @click="activeTab = 'notifications'"
                     :class="[
-                        'border-b-2 px-1 py-3 text-sm font-medium transition-colors',
+                        'flex-shrink-0 border-b-2 px-1 py-3 text-sm font-medium transition-colors',
                         activeTab === 'notifications'
                             ? 'border-brand text-brand'
                             : 'border-transparent text-text-tertiary hover:border-border-strong hover:text-text-secondary'
@@ -147,7 +149,7 @@ const toggles = [
                 <button
                     @click="activeTab = 'preferences'"
                     :class="[
-                        'border-b-2 px-1 py-3 text-sm font-medium transition-colors',
+                        'flex-shrink-0 border-b-2 px-1 py-3 text-sm font-medium transition-colors',
                         activeTab === 'preferences'
                             ? 'border-brand text-brand'
                             : 'border-transparent text-text-tertiary hover:border-border-strong hover:text-text-secondary'

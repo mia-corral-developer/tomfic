@@ -152,7 +152,15 @@ const secondaryStats = () => [
         <PluginSlot slot="before-stats" :components="pluginComponents?.beforeStats" />
 
         <!-- Primary stats -->
+        <!-- UXF-04: skeleton visible mientras llega la página (feedback < 400ms) -->
         <section v-if="widgets.stats_overview" class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <template v-if="stats.totalProducts === undefined">
+                <div v-for="i in 4" :key="'sk' + i" class="p-4 border border-border-subtle rounded-lg bg-surface-raised">
+                    <div class="zellia-skeleton-shim h-3 w-24" />
+                    <div class="zellia-skeleton-shim h-7 w-32 mt-3" />
+                    <div class="zellia-skeleton-shim h-2 w-20 mt-2" />
+                </div>
+            </template>
             <StatTile
                 v-if="stats.totalProducts !== undefined"
                 :label="t('dashboard.totalProducts')"

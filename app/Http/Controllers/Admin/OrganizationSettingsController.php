@@ -35,6 +35,11 @@ class OrganizationSettingsController extends Controller
         return Inertia::render('Settings/Organization/Index', [
             'organization' => $organization,
             'user' => $user,
+            // accessor getIsAdminAttribute() NO serializa a JSON/Inertia props —
+            // el Vue hace props.user.is_admin && quedaba siempre falsy y pintaba
+            // los 8 campos disabled incluso para el admin (hallazgo A1, Fase 0).
+            // Se computa aquí explícitamente como prop booleana.
+            'isAdmin' => $user->is_admin,
         ]);
     }
 

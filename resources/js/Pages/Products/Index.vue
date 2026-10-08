@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import Modal from '@/Components/Modal.vue';
 import PluginSlot from '@/Components/PluginSlot.vue';
 import PageHeader from '@/Components/ui/PageHeader.vue';
 import Card from '@/Components/ui/Card.vue';
@@ -37,6 +38,8 @@ const selectAll = ref(false);
 
 // Bulk operations state
 const showBulkCategoryModal = ref(false);
+// UXF-03: confirmación dedicada (no confirm() nativo) — foco capturado + Escape
+const showBulkDeleteModal = ref(false);
 const showBulkPriceModal = ref(false);
 const bulkCategoryId = ref('');
 const bulkPriceType = ref('percentage');
@@ -134,11 +137,15 @@ const deleteProduct = (product) => {
 
 const isLowStock = (product) => product.stock <= product.min_stock;
 
+const requestBulkDelete = () => {
+    if (selectedProducts.value.length === 0) return;
+    showBulkDeleteModal.value = true;
+};
+
 const bulkDelete = () => {
-    if (!confirm(`Are you sure you want to delete ${selectedProducts.value.length} product(s)? This action cannot be undone.`)) return;
     bulkProcessing.value = true;
     router.post(route('products.bulk.delete'), { ids: selectedProducts.value }, {
-        onSuccess: () => { selectedProducts.value = []; selectAll.value = false; bulkProcessing.value = false; },
+        onSuccess: () => { selectedProducts.value = []; selectAll.value = false; bulkProcessing.value = false; showBulkDeleteModal.value = false; },
         onError: () => { bulkProcessing.value = false; },
     });
 };
@@ -263,7 +270,7 @@ const thClass =
                 <Button variant="secondary" size="sm" :disabled="bulkProcessing" @click="showBulkCategoryModal = true">Change category</Button>
                 <Button variant="secondary" size="sm" :disabled="bulkProcessing" @click="showBulkPriceModal = true">Adjust price</Button>
                 <Button variant="secondary" size="sm" :disabled="bulkProcessing" @click="bulkExport">Export</Button>
-                <Button variant="danger" size="sm" :disabled="bulkProcessing" @click="bulkDelete"><Trash2 :size="14" />Delete</Button>
+                <Button variant="danger" size="sm" :disabled="bulkProcessing" @click="requestBulkDelete"><Trash2 :size="14" />Delete</Button>
             </div>
         </div>
 
@@ -413,5 +420,24 @@ const thClass =
 
         <!-- Barcode Scanner Modal -->
         <BarcodeScannerModal :show="showScannerModal" @close="closeScanner" @product-found="handleProductFound" />
+
+        <!-- UXF-03: confirmación de bulk delete (2 pasos, foco capturado por Modal.vue) -->
+        <Modal :show="showBulkDeleteModal" max-width="md" @close="showBulkDeleteModal = false">
+            <div class="p-6">
+                <h2 class="zellia-headline-2 zellia-w-semibold text-text-primary">
+                    {{ $t('common.delete', 'Eliminar') }} {{ selectedProducts.length }}
+                    {{ selectedProducts.length === 1 ? 'producto' : 'productos' }}?
+                </h2>
+                <p class="zellia-body-1 text-text-secondary mt-2">
+                    Esta acción no se puede deshacer.
+                </p>
+                <div class="mt-6 flex justify-end gap-2">
+                    <Button variant="outline" @click="showBulkDeleteModal = false">Cancelar</Button>
+                    <Button variant="danger" :disabled="bulkProcessing" @click="bulkDelete">
+                        Eliminar {{ selectedProducts.length }}
+                    </Button>
+                </div>
+            </div>
+        </Modal>
     </AppLayout>
 </template>

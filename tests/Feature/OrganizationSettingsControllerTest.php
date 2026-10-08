@@ -107,7 +107,23 @@ class OrganizationSettingsControllerTest extends TestCase
             ->component('Settings/Organization/Index')
             ->has('organization')
             ->has('user')
+            ->where('isAdmin', true)
         );
+    }
+
+    /**
+     * A1 (docs/audits/fase-0-baseline.md): el accessor User::getIsAdminAttribute()
+     * no serializa a los props de Inertia, así que props.user.is_admin llegaba
+     * vacío al Vue y la pantalla pintaba los 8 campos disabled incluso para
+     * el admin. El controller ahora expone 'isAdmin' como prop booleana.
+     */
+    public function test_is_admin_prop_reaches_the_vue_page(): void
+    {
+        // Solo admin (el member recibe 403 por permisos — cubierto en el otro test)
+        $this->actingAs($this->admin)
+            ->get(route('settings.organization.index'))
+            ->assertInertia(fn ($page) => $page
+                ->where('isAdmin', true));
     }
 
     public function test_member_cannot_view_organization_settings_without_permission(): void
