@@ -93,6 +93,18 @@ onMounted(() => window.addEventListener('keydown', handleHotkey));
 const user = computed(() => page.props.auth?.user);
 const workspaceName = computed(() => page.props.auth?.organization?.name || 'Inventoros');
 
+// Tema actual para el wordmark del sidebar (ThemeToggle guarda en localStorage)
+const isDark = ref(false);
+onMounted(() => {
+    isDark.value = document.documentElement.classList.contains('dark');
+    // re-sincroniza cuando ThemeToggle cambia el tema
+    const obs = new MutationObserver(() => {
+        isDark.value = document.documentElement.classList.contains('dark');
+    });
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    onBeforeUnmount(() => obs.disconnect());
+});
+
 /**
  * Nav schema. Each section is { labelKey, items: [{ icon, nameKey, href, active, perm? }] }.
  * Render is data-driven so adding a section is one line. Labels are i18n keys
@@ -186,12 +198,12 @@ const isActive = (item) => item.active.some((pattern) => route().current(pattern
             <div class="zellia-sidebar__shape zellia-sidebar__shape--1" aria-hidden="true" />
             <div class="zellia-sidebar__shape zellia-sidebar__shape--2" aria-hidden="true" />
 
-            <!-- Header: marca + tagline (§2.4) -->
+            <!-- Header: marca Zellia (§2.4) — wordmark claro/oscuro según tema -->
             <div class="zellia-sidebar__header">
                 <Link :href="route('dashboard')" class="zellia-sidebar__brand">
                     <img
-                        src="/images/brand/inventoros_icon_transparent_512.png"
-                        alt="Inventoros"
+                        :src="'/images/brand/zellia/zellia-wordmark-' + (isDark ? 'dark' : 'light') + '.png'"
+                        alt="Zellia"
                         class="zellia-sidebar__logo"
                     />
                 </Link>
