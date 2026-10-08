@@ -335,7 +335,7 @@ flowchart TD
   C1 -->|no| D1
   subgraph CIERRE["3. Completar"]
     D1["complete() 1 transacción"] --> D2["items con counted ≠ system:<br/>status item = adjusted"]
-    D2 --> D3["StockAdjustment::adjust()<br/>(increase o decrease)<br/>reason = 'audit' refe audit_number"]
+    D2 --> D3["StockAdjustment::adjust()<br/>(increase o decrease)<br/>reason='audit' ref=audit_number"]
     D3 --> D4["status = completed<br/>completed_at"]
   end
   D4 --> E1["Historial trazable:<br/>quien contó, cuándo,<br/>sistema vs conteo, ajuste creado"]
@@ -382,5 +382,86 @@ flowchart LR
   RMA["returns receive"] --> PLS
   RC["ReconcileLocationStock command<br/>(scheduled)"] -->|detecta y corrige drift| PLS
 </div>
-\n</body>
+\n
+<h2>21. ⭐ Flujo de Órdenes de Venta con Aprobación (paso a paso en español)</h2>
+<p class="lead" style="padding:0 32px">El pedido de venta atraviesa dos ciclos de control en paralelo: el estado de despacho (stock físico) y el estado de aprobación (control comercial). No navega sin los dos alineados.</p>
+<div class="mermaid">
+flowchart TD
+  subgraph CREACION["1. Crear orden"]
+    A1["Orders/Create: cliente + líneas<br/>producto · variante · cantidad"] --> A2["Guard: ¿hay stock por bin?"]
+    A2 -->|"sí"| A3["OrderService::create<br/>working un solo DB::transaction<br/>Order number único"]
+    A2 -->|"no"| A3ERR["flash: InsufficientStock<br/>no se crea"]
+  end
+  A3 --> ST1["OrderStatus.pending<br/>ApprovalStatus.pending"]
+  ST1 --> N1["Notification: orden creada<br/>Webhook: order_created"]
+
+  subgraph APROBACION["2. Ciclo comercial de aprobación"]
+    B1{"Tiene el flag<br/>require_approval?"}
+    B1 -->|"sí"| B2["aprobador con perm<br/>approve_orders la revisa"]
+    B2 --> B3{"¿aprueba?"}
+    B3 -->|"sí"| B4["approval_status=approved<br/>desbloquea la orden para ship"]
+    B3 -->|"no"| B5["rejected con nota<br/>con nota - requiere aclaración"]
+    B1 -->|"no"| B4
+  end
+
+  subgraph DESPACHO["3. Ciclo físico de despacho"]
+    C1["processing"] --> C2["ship (✔ stock reservó en create;<br/>ship por línea)"]
+    C2 --> C3["consume del bin asignado<br/>ProductLocationStock service"]
+    C3 --> C4{"¿producto traceado?"}
+    C4 -->|batch| C5["FIFO por lot con expiry<br/>OrderItemBatchAllocation"]
+    C4 -->|serial| C6["Toma serials libres<br/>los marca vendidos"]
+    C4 -->|none| C7["solo bins"]
+    C5 --> C8["OrderStatus.shipped<br/>shipped_at"]
+    C6 --> C8
+    C7 --> C8
+  end
+
+  C8 --> D1["delivered<br/>fin del ciclo comercial"]
+  D1 --> N2["Notification: delivered<br/>Webhook: order_status_changed"]
+  D1 --> RMA{"Cliente quiere devolver?"}
+  RMA -->|sí| RMA1["ReturnOrder (flujo 6)"]
+  RMA -->|no| FIN["[terminado]"]
+
+  subgraph GUARDIAS["Guards que nunca te dejan mentir en el stock"]
+    G1["✖ cancel una shipped:<br/>no se restaura stock fantasma"]
+    G2["✖ reactivate una cancelled:<br/>crear nueva orden"]
+    G3["✖ editar con stock negativo:<br/>despacha primero los restocks del edit"]
+  end
+
+  style A3ERR fill:#fee2e2
+  style B5 fill:#fef3c7
+  style FIN fill:#dcfce7
+</div>
+
+<h2>22. ⭐ Cycle counting ABC — cómo decide el sistema qué y cuándo contar</h2>
+<p class="lead" style="padding:0 32px">El conteo rotativo no es un plan primitivo de Figma: la frecuencia de auditorías se sugiere por el VALOR y ROTACIÓN de cada producto (clasificación ABC de inventarios). Como dato: no hay automatización que cree el plan por ti — la inteligencia la aporta el reporte de Inventory Valuation y los low-stock para elegir zonas.</p>
+<div class="mermaid">
+flowchart TD
+  START["Dashboard y Reportes disponibles"] --> VAL["reports/inventory-valuation<br/>valor total por producto × ubicación"]
+  VAL --> ABC{"Clasificar productos"}
+  ABC -->|"alto valor y rotación<br/>~20% de SKUs"| A1["CLASE A<br/>+movimiento +volumen $<br/>cuenta mensual/quincenal"]
+  ABC -->|"valor medio<br/>~30% de SKUs"| B1["CLASE B<br/>cuenta trimestral"]
+  ABC -->|"bajo valor, mucho stock<br/>~50% SKUs"| C1["CLASE C<br/>cuenta semestral"]
+  A1 --> PLAN["Plan de zones rotativas<br/>pasillo 1 = semana 1<br/>pasillo 2 = semana 2..."]
+  B1 --> PLAN
+  C1 --> PLAN
+  PLAN --> AUDIT["Crear audit tipo CYCLE<br/>scope: warehouse_location_id"]
+  AUDIT --> FLOW17["flujo 17: contar y ajustar"]
+  LOW["Bandeja: productos low-stock<br/>report/low-stock"] -.->|"spot si hay incidencia"| AUDIT2["audit SPOT puntual"]
+  style A1 fill:#fecaca
+  style B1 fill:#fef3c7
+  style C1 fill:#dcfce7
+</div>
+
+<h2>23. Los 5 comandos programados (scheduler cron)</h2>
+<div class="mermaid">
+flowchart LR
+  CRON["app/Console Kernel schedule"] --> C1["CheckReorderPoints<br/>daily: stock menor o min_stock<br/>→ sugiere POs por supplier"]
+  CRON --> C2["ReconcileLocationStock<br/>daily: bins vs Product.stock<br/>corrige drift"]
+  CRON --> C3["ReconcileTrackedStock<br/>serials y lote huérfanos"]
+  CRON --> C4["PruneActivityLogs<br/>retención configurable"]
+  CRON --> C5["PruneWebhookDeliveries<br/>logs de entrega históricos"]
+</div>
+
+</body>
 </html>

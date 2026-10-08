@@ -24,6 +24,9 @@ Fuente: `docs/diagrams/inventoros-diagrams.html` (Mermaid, 14 bloques, verificad
 | 18 | Tipos de auditoría | full / cycle / spot — cuándo usar cada uno |
 | 19 | Ajustes manuales | fuera de auditoría: +/- con motivo |
 | 20 | Bin-level stock | dónde viven los números: Product.stock global vs ProductLocationStock por bin + reconciliation |
+| 21 | ⭐ Órdenes con aprobación | Doble ciclo: comercial (approval) + físico (ship con bins/serials/lotes) y las 3 guards de stock |
+| 22 | ⭐ Cycle counting ABC | Cómo se clasifica A/B/C por valor+rotación y se arma el plan rotativo por zonas |
+| 23 | Scheduler | Los 5 commands programados diarios |
 
 ## Flujos de negocio cubiertos
 - **Ventas:** crear orden (stock por bin) → aprobación → envío (consume + serials/lotes) → factura → RMA
