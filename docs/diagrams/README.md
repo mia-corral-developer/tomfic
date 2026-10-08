@@ -18,6 +18,8 @@ Fuente: `docs/diagrams/inventoros-diagrams.html` (Mermaid, 14 bloques, verificad
 | 12 | Plugins | upload → activate → add_action → slots de UI |
 | 13 | Seguridad | auth → 2FA TOTP → permission middleware → org-scoping → warehouse access |
 | 14 | DevOps | installer wizard → docker/cPanel → queue worker → scheduler de 5 commands → self-update firmado |
+| 15 | Mapa de navegación UI | 93 páginas agrupadas por sección del sidebar con su permiso |
+| 16 | Matriz roles→funcionalidad | Qué puede hacer cada perfil (view/create/edit/admin) |
 
 ## Flujos de negocio cubiertos
 - **Ventas:** crear orden (stock por bin) → aprobación → envío (consume + serials/lotes) → factura → RMA

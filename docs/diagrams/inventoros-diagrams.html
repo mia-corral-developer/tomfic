@@ -247,5 +247,72 @@ flowchart TD
   SENTRY["Sentry (errores)"] -.-> APP
   UPDATE["Admin self-update<br/>signed zip verify"] --> APP
 </div>
+
+<h2>15. Mapa de navegación — pantallas ↔ rutas ↔ permisos (93 páginas)</h2>
+<div class="mermaid">
+flowchart LR
+  ROOT["Shell AppLayout"] --> L1["Login / 2FA / Register"]
+  ROOT --> DASH["Dashboard"]
+  ROOT --> SUB1["📦 Workspace"]
+  ROOT --> SUB2["🗂️ Catálogo"]
+  ROOT --> SUB3["📐 Stock"]
+  ROOT --> SUB4["📊 Insights"]
+  ROOT --> SUB5["⚙️ Admin"]
+  ROOT --> CTA["Accesos rápidos"]
+  SUB1 --> P1["Products<br/>Index/Show/Create/Edit<br/>perm: view_products"]
+  SUB1 --> P2["Orders (y approval)<br/>view_orders"]
+  SUB1 --> P3["Returns (RMA)<br/>manage_returns"]
+  SUB1 --> P4["PurchaseOrders<br/>view_purchase_orders"]
+  SUB1 --> P5["Suppliers<br/>view_suppliers"]
+  SUB1 --> P6["Customers"]
+  SUB2 --> P7["Categories<br/>manage_categories"]
+  SUB2 --> P8["Locations<br/>manage_locations"]
+  SUB2 --> P9["Warehouses<br/>manage_warehouses"]
+  SUB3 --> P10["StockTransfers<br/>view_stock_transfers"]
+  SUB3 --> P11["StockAudits<br/>view_stock_audits"]
+  SUB3 --> P12["StockAdjustments"]
+  SUB3 --> P13["WorkOrders<br/>manage_stock"]
+  SUB4 --> P14["Reports (5 fijos + Builder 4 vistas)<br/>view_reports"]
+  SUB4 --> P15["ImportExport<br/>manage_import_export"]
+  SUB5 --> P16["Users<br/>manage_users"]
+  SUB5 --> P17["Roles<br/>manage_roles"]
+  SUB5 --> P18["Plugins<br/>manage_plugins"]
+  SUB5 --> P19["Settings (Account/Org/Email/Webhooks)"]
+  SUB5 --> P20["ActivityLog"]
+  SUB5 --> P21["Admin Update (self-update firmado)"]
+  CTA --> P22["Notifications center"]
+  CTA --> P23["Global Search ⌘K"]
+</div>
+
+<h2>16. Flujo de permisos por acción (matriz resumen)</h2>
+<div class="mermaid">
+flowchart TD
+  subgraph Viewer
+    V["Solo lectura"]
+  end
+  subgraph Operator
+    O["Gestiona stock/ordenes"]
+  end
+  subgraph Manager
+    M["Catalogo + compras"]
+  end
+  subgraph Admin
+    A["Usuarios/roles/plugins/settings"]
+  end
+  V --> P1
+  V --> P2
+  V --> P14
+  O --> P2b["create/edit orders"]
+  O --> P10b["transfers + audits + adjustments + WO"]
+  O --> P3b["RMA receive/approve"]
+  M --> P4b["create/edit PO + receive"]
+  M --> P5b["suppliers CRUD"]
+  M --> P7b["categories/locations/warehouses"]
+  A --> P8b["users CRUD + promote admin"]
+  A --> P9b["roles con permission sets"]
+  A --> P11b["plugins upload/activate"]
+  A --> P12b["webhooks + organization"]
+</div>
+
 </body>
 </html>
