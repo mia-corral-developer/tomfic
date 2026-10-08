@@ -1,0 +1,27 @@
+# Diagramas de Inventoros — índice
+
+Fuente: `docs/diagrams/inventoros-diagrams.html` (Mermaid, 14 bloques, verificados 14/14 válidos).
+
+| # | Diagrama | Qué explica |
+|---|---|---|
+| 1 | Arquitectura C4 | Navegador Vue/Inertia → Controllers → Services → DB, Jobs, plugins, externos |
+| 2 | ERD | Las 20+ entidades y sus relaciones (org, warehouse, producto/variantes, order, PO, RMA, WO) |
+| 3 | Order lifecycle | pending → processing → shipped → delivered; cancel con guard anti-phantom-stock |
+| 4 | Stock tracking | none/batch/serial → bins por ubicación + observers → webhooks/notifs |
+| 5 | Supply chain | Reorder points automáticos → PO por supplier → receive parcial → invoice |
+| 6 | RMA | pending → approved → received (por unidad) → completed (restock condicional) |
+| 7 | Transfers | draft → in_transit → completed/cancelled (multi-almacén) |
+| 8 | Work orders | ensamblaje: consume BOM, produce, cancel restaura; bloqueo por stock negativo |
+| 9 | Report builder | config → preview → SavedReport → CSV export async |
+| 10 | Import CSV | validación → job async → upsert → activity log |
+| 11 | Webhooks | evento → do_action → HMAC POST → retry backoff |
+| 12 | Plugins | upload → activate → add_action → slots de UI |
+| 13 | Seguridad | auth → 2FA TOTP → permission middleware → org-scoping → warehouse access |
+| 14 | DevOps | installer wizard → docker/cPanel → queue worker → scheduler de 5 commands → self-update firmado |
+
+## Flujos de negocio cubiertos
+- **Ventas:** crear orden (stock por bin) → aprobación → envío (consume + serials/lotes) → factura → RMA
+- **Compras:** sugerencia por reorder point → PO → recepción parcial con lotes → invoice
+- **Producción:** work orders ensamblando kits con BOM → stock de componentes y de producto terminado
+- **Movimientos internos:** transfers entre almacenes; audits/cycle counting; adjustments con reason codes
+- **Administración:** usuarios/roles/permisos (30+ granulares), 2FA, plugins, webhooks, activity log, report builder, import/export, self-update firmado
