@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Inventoros (tomfic) — Diagramas del sistema</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+body{font-family:Inter,system-ui,sans-serif;margin:0;background:#0f172a;color:#e2e8f0}
+h1{padding:24px 32px 0}
+p.lead{padding:0 32px;color:#94a3b8}
+h2{padding:24px 32px 8px;color:#7dd3fc;border-bottom:1px solid #1e293b;margin:24px 32px 12px}
+.mermaid{background:#fff;border-radius:12px;padding:20px;margin:12px 32px;overflow:auto}
+.mermaid svg{max-width:100%}
+</style>
+</head>
+<body>
+<h1>Inventoros — Diagramas del sistema (Laravel 13 + Vue 3 / Inertia)</h1>
+<p class="lead">Generado del código real: routes/web/*, app/Enums, app/Observers, app/Services, app/Jobs, commands. Fuente única: repo tomfic.</p>
+
+<h2>1. stacked overview — Arquitectura C4 nivel contenedores</h2>
+<div class="mermaid">
+flowchart TB
+  subgraph Users["Usuarios"]
+    A1["Admin"]:::role
+    A2["OpeDis / Manager / Member"]:::role
+  end
+  subgraph Browser["Navegador (Vue 3 SPA-ish)"]
+    INERTIA["Inertia.js Pages<br/>(93 .vue)"]
+  end
+  subgraph Laravel["Laravel 13 (monolito)"]
+    CTRL["Controllers<br/>Inventory / Sales / Order / Purchasing / Admin / Reports / Api"]
+    SVC["Services<br/>OrderService · ProductLocationStockService<br/>TrackedStockAllocationService · ReportDataService<br/>SKUGeneratorService · WebhookService · NotificationService · PluginService"]
+    OBS["Observers<br/>Order · Product · PurchaseOrder"]
+    JOBS["Jobs<br/>WebhookDelivery · ProcessProductImport · GenerateDataExport"]
+    CMD["Commands<br/>CheckReorderPoints · Reconcile* · Prune* · Update*"]
+    PLUGIN["HookRegistry<br/>(do_action / apply_filters)"]
+    DB[("MySQL / SQLite")]
+    QUEUE[("Colas")]
+  end
+  EXT1["Webhooks externos<br/>(HMAC retry)"]
+  EXT2["Email (SMTP/Mailgun/SendGrid)"]
+  A1-->INERTIA
+  A2-->INERTIA
+  INERTIA-->CTRL
+  CTRL-->SVC
+  SVC-->OBS
+  OBS-->PLUGIN
+  PLUGIN-->JOBS
+  JOBS-->QUEUE
+  QUEUE-->EXT1
+  SVC-->DB
+  SVC-->EXT2
+  CMD-->DB
+  CMD-->SVC
+classDef role fill:#1e293b,stroke:#38bdf8,color:#e0f2fe
+</div>
+
+<h2>2. ERD — Modelo de datos (entidades raíz)</h2>
+<div class="mermaid">
+erDiagram
+  ORGANIZATION ||--o{ WAREHOUSE : has
+  ORGANIZATION ||--o{ USER : contains
+  USER }o--o{ ROLE : assigned
+  ROLE ||--o{ PERMISSION : grants
+  WAREHOUSE ||--o{ LOCATION : "aisle>shelf>bin"
+  WAREHOUSE ||--o{ STOCK-TRANSFER : "from/to"
+  PRODUCT ||--o{ PRODUCT-OPTION : variants
+  PRODUCT ||--o{ VARIANT : "SKU propio"
+  PRODUCT ||--o{ PRODUCT-COMPONENT : "kits BOM"
+  PRODUCT ||--o{ PRODUCT-BATCH : "lotes+caducidad"
+  PRODUCT ||--o{ PRODUCT-SERIAL : "número de serie"
+  PRODUCT ||--o{ PRODUCT-LOCATION-STOCK : "inventario por bin"
+  PRODUCT }o--|| CATEGORY : belongs
+  ORDER ||--|{ ORDER-ITEM : lines
+  ORDER-ITEM }o--o{ VARIANT : puede comprar variante
+  ORDER-ITEM ||--o{ ORDER-ITEM-BATCH : allocation
+  ORDER-ITEM ||--o{ PRODUCT-SERIAL : "asigna serials"
+  ORDER }o--|| CUSTOMER : buys
+  ORDER ||--o{ RETURN-ORDER : RMA
+  RETURN-ORDER ||--|{ RETURN-ORDER-ITEM : lines
+  SUPPLIER ||--o{ PURCHASE-ORDER : receives
+  PURCHASE-ORDER ||--|{ PURCHASE-ORDER-ITEM : lines
+  PURCHASE-ORDER-ITEM }o--|| PRODUCT : "recibir a bin"
+  WORK-ORDER ||--|{ PRODUCT-COMPONENT : "consume BOM"
+  WORK-ORDER }o--|| PRODUCT : "produce ensamblado"
+  SAVED-REPORT }o--|| USER : "builder"
+  WEBHOOK }o--|| ORGANIZATION : "recibe eventos"
+</div>
+
+<h2>3. Flujo de pedido de venta (Order lifecycle con lock y stock)</h2>
+<div class="mermaid">
+stateDiagram-v2
+  [*] --> pending: create (OrderService::create)<br/>lock + valida stock por bin
+  pending --> processing: approved (approve_orders perm)
+  pending --> rejected: approval denegado
+  processing --> shipped: ship<br/>consume bins + serial/batch alloc
+  shipped --> delivered: deliver
+  pending --> cancelled: cancel (guard: si shipped/delivered no deja)<br/>restockItem() por línea
+  processing --> cancelled
+  cancelled --> [*]
+  delivered --> [*]
+  note right of cancelled
+    Restock con lockForUpdate
+    y re-lectura dentro de transacción:
+    nunca doble-restock ni phantom stock
+  end note
+</div>
+
+<h2>4. Flujo de restock y allocation de stock trakeado</h2>
+<div class="mermaid">
+flowchart TD
+  REQ["Cambiar stock<br/>(order edit/cancel/delete, RMA, transfer, WO)"] --> LOCK["lockForUpdate order/item<br/>(DB::transaction)"]
+  LOCK --> TYPE{"Tipo de tracking<br/>del producto?"}
+  TYPE -->|none| BIN["ProductLocationStockService<br/>consume o devuelve al bin"]
+  TYPE -->|batch| BATCH["TrackedStockAllocationService<br/>FIFO por lot/expiry"]
+  TYPE -->|serial| SERIAL["Asignar serials libres<br/>a order_item_id"]
+  BIN --> SIMD["ProductLocationStock<br/>(per bin row)"]
+  BATCH --> SIMD
+  SERIAL --> SIMD
+  SIMD --> OBS{Observer Order}
+  OBS -->|afterCommit| HOOK["do_action(order_*)"]
+  HOOK --> WEBHOOKS["WebhookDeliveryJob<br/>HMAC + backoff"]
+  HOOK --> NOTIF["NotificationService<br/>email multi-proveedor"]
+</div>
+
+<h2>5. Supply chain: PO → receive → stock</h2>
+<div class="mermaid">
+flowchart LR
+  REORDER["CheckReorderPoints<br/>(scheduled)"] -->|"stock <= min"| POA["Agrupa por supplier<br/>sugiere cantidades"]
+  MANU["PO manual"] --> POA
+  POA -->|"draft"| POB["PO enviado"]
+  POB -->|"receive parcial o total"| RECEP["Receive items<br/>batch/serial opcional<br/>suma ProductLocationStock"]
+  RECEP --> INVOICE["Invoice (domPDF)"]
+  RECEP --> ALERT["POeceived<br/>Observador + webhooks"]
+  POB --> CANCEL2["rejected/void"]
+</div>
+
+<h2>6. RMA / Devoluciones</h2>
+<div class="mermaid">
+flowchart TD
+  O1["Order shipped/delivered"] -->|"crear RMA"| R1["ReturnOrder pending"]
+  R1 -->|"approve"| R2["approved"]
+  R2 -->|"receive items<br/>estado por unidad OK/dañado"| R3["received"]
+  R3 -->|"complete: restock<br/>según condición"| R4["completed<br/>stock restaurado + note"]
+  R1 -->|"reject"| R5["rejected"]
+  R5 --> [*]
+  R4 --> [*]
+</div>
+
+<h2>7. Multi-almacén y transfers</h2>
+<div class="mermaid">
+stateDiagram-v2
+  [*] --> draft: transfer crear
+  draft --> in_transit: complete parcial/total<br/>descuenta origen
+  in_transit --> completed: recibir<br/>suma destino
+  in_transit --> cancelled: cancel devuelve origen
+  completed --> [*]
+  cancelled --> [*]
+</div>
+
+<h2>8. Work orders (ensamblaje/kit)</h2>
+<div class="mermaid">
+stateDiagram-v2
+  [*] --> pending: "WO: BOM product"
+  pending --> in_progress: start<br/>consume componentes
+  in_progress --> completed: complete<br/>produce terminado al bin
+  in_progress --> cancelled: cancel<br/>restaura componentes
+  pending --> cancelled
+  completed --> [*]
+  note right of completed
+    "component would go negative" bloquea
+    el complete (concurrencia probada)
+  end note
+</div>
+
+<h2>9. Report builder + exports</h2>
+<div class="mermaid">
+flowchart LR
+  CFG["User elige<br/>source(6) + cols + filters(10+) + sort"] --> PREV["preview (POST ajax)"]
+  PREV --> SAVE["SavedReport template<br/>compartible"]
+  SAVE -->|"re-ejecutar"| QUERY["ReportDataService"]
+  CGI2["Config a CSV export"] --> JOB1["GenerateDataExportJob<br/>(async)"]
+  JOB1 --> FILE["DataExport download"]
+</div>
+
+<h2>10. Import / export CSV</h2>
+<div class="mermaid">
+flowchart TD
+  UPL["Upload CSV"] --> VAL["validación clases<br/>ProductsImport (status a is_active)"]
+  VAL -->|OK fuzzy| JOB2["ProcessProductImportJob"]
+  VAL -->|errores| REP["Reporte línea por línea"]
+  JOB2 --> D["UPSERT productos<br/>variant by sku"]
+  D --> AUD["ActivityLogEntry"]
+</div>
+
+<h2>11. Events & webhooks (hmac + retries + plugin hooks)</h2>
+<div class="mermaid">
+sequenceDiagram
+  autonumber
+  participant Domain as "Servicio (Order/PO/Product)"
+  participant Observer as Observer afterCommit
+  participant Hook as HookRegistry do_action
+  participant WebhookService
+  participant Job as WebhookDeliveryJob
+  participant HTTP as "URL externa"
+  Domain->>Observer: modelo transiciona
+  Observer->>Hook: do_action('order_status_changed')
+  Hook->>WebhookService: matching webhooks(org, event)
+  WebhookService->>Job: dispatch entrega
+  Job->>HTTP: POST firma HMAC-SHA256
+  HTTP-->>Job: 2xx / no
+  alt 2xx
+  else NO 2xx
+    Job->>Job: retry backoff exponencial
+  end
+</div>
+
+<h2>12. Plugins (WordPress-style)</h2>
+<div class="mermaid">
+flowchart LR
+  ZIP["plugin.zip upload"] --> FS["plugins/ dir + DB row"]
+  ACT["activate"] --> REG["HookRegistry:<br/>add_action / add_filter"]
+  REG -->|"order_updated, page slots"| EV["Eventos del core"]
+  EV --> PRV["Código del plugin corre"]
+  UI["UI slots: header/sidebar/tabs/footer"] --> PAGES["Páginas Vue los renderizan"]
+</div>
+
+<h2>13. Seguridad y roles</h2>
+<div class="mermaid">
+flowchart TD
+  LOGIN["Login (2FA TOTP opc)"] --> ROUTE["Route::middleware('auth')"]
+  ROUTE --> PERM["permission middleware<br/>30+ permisos granulares"]
+  PERM --> PROH["403 si no tiene"]
+  PERM --> ORG["organization scoping<br/>(Order/PO/Product Controller check)"]
+  PERM --> WH["Warehouse access control<br/>assignable users per warehouse"]
+  ORG --> PASS["password.confirm on sensitive routes"]
+</div>
+
+<h2>14. DevOps / instalación</h2>
+<div class="mermaid">
+flowchart TD
+  INST["/install wizard<br/>prereqs - db - admin"] -->|"SystemSetting installed"| APP["App operativa"]
+  DEP["Docker / CPANEL.md"] --> QW
+  QW["php artisan queue:worker"] --> JOBS3["webhook/import/export jobs"]
+  CRON["scheduler"] --> CR
+  CR["CheckReorderPoints<br/>ReconcileLocationStock<br/>ReconcileTrackedStock<br/>PruneActivityLogs<br/>PruneWebhookDeliveries"]
+  SENTRY["Sentry (errores)"] -.-> APP
+  UPDATE["Admin self-update<br/>signed zip verify"] --> APP
+</div>
+</body>
+</html>
