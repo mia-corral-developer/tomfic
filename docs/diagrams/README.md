@@ -20,6 +20,10 @@ Fuente: `docs/diagrams/inventoros-diagrams.html` (Mermaid, 14 bloques, verificad
 | 14 | DevOps | installer wizard → docker/cPanel → queue worker → scheduler de 5 commands → self-update firmado |
 | 15 | Mapa de navegación UI | 93 páginas agrupadas por sección del sidebar con su permiso |
 | 16 | Matriz roles→funcionalidad | Qué puede hacer cada perfil (view/create/edit/admin) |
+| 17 | ⭐ Flujo central: Conteos y Auditoría | El corazón de tomfic: crear auditoría (snapshot congelado) → contar → discrepancia → ajuste trazeable |
+| 18 | Tipos de auditoría | full / cycle / spot — cuándo usar cada uno |
+| 19 | Ajustes manuales | fuera de auditoría: +/- con motivo |
+| 20 | Bin-level stock | dónde viven los números: Product.stock global vs ProductLocationStock por bin + reconciliation |
 
 ## Flujos de negocio cubiertos
 - **Ventas:** crear orden (stock por bin) → aprobación → envío (consume + serials/lotes) → factura → RMA

@@ -314,5 +314,73 @@ flowchart TD
   A --> P12b["webhooks + organization"]
 </div>
 
-</body>
+
+<h2>17. ⭐ FLUJO CENTRAL — Conteos y Auditoría de Inventario (Stock Audits)</h2>
+<p class="lead" style="padding:0 32px">Tomfic = sistema de conteos físicos contra el stock del sistema. 3 tipos de auditoría: full (todo el almacén), cycle (por área rotativa), spot (puntual). Cada auditoría genera items congelados en el momento de creación; el conteo físco compara contra eso; las diferencias se convierten en Ajustes de Stock trazables.</p>
+<div class="mermaid">
+flowchart TD
+  subgraph CREACION["1. Crear auditoría"]
+    A1["Wizard / form:<br/>tipo (full/cycle/spot)<br/>ubicación (opcional)<br/>notas"] --> A2["store(): snapshot congelado<br/>system_quantity de cada<br/>producto/variante en la ubicación"]
+  end
+  A2 --> B1["Auditoría = draft"]
+
+  subgraph CONTEO["2. Conteo físico"]
+    B1 -->|"start()"| B2["in_progress<br/>started_at"]
+    B2 --> B3["Count por item<br/>(modal con validación)"]
+    B3 --> B4["updateCount():<br/>discrepancy = counted - system<br/>status item: counted"]
+  end
+
+  B4 --> C1{"¿verificar<br/>recount?"}
+  C1 -->|sí| B3
+  C1 -->|no| D1
+  subgraph CIERRE["3. Completar"]
+    D1["complete() 1 transacción"] --> D2["items con counted ≠ system:<br/>status item = adjusted"]
+    D2 --> D3["StockAdjustment::adjust()<br/>(increase o decrease)<br/>reason = 'audit' refe audit_number"]
+    D3 --> D4["status = completed<br/>completed_at"]
+  end
+  D4 --> E1["Historial trazable:<br/>quien contó, cuándo,<br/>sistema vs conteo, ajuste creado"]
+
+  subgraph CANCELAR["Rama cancel"]
+    X1["cancelled: no crea ajustes,<br/> items quedan sin efecto"]
+  end
+  B2 --> X1
+
+  style A2 fill:#fef3c7,stroke:#d97706
+  style D3 fill:#fecaca,stroke:#dc2626
+  style E1 fill:#dcfce7,stroke:#16a34a
+</div>
+
+<h2>18. Los tres tipos de auditoría (criterios de alcance)</h2>
+<div class="mermaid">
+flowchart LR
+  T1["FULL<br/>todo el warehouse"] --> R1["anual / fin de período"]
+  T2["CYCLE<br/>por location rotativa"] --> R2["semanal/mensual<br/>por zona o ABC"]
+  T3["SPOT<br/>spot de un producto<br/>o variante concreta"] --> R3["on demand: sospecha<br/>de faltante o avería"]
+</div>
+
+<h2>19. Ajustes de stock manuales (fuera de auditorías)</h2>
+<div class="mermaid">
+flowchart TD
+  A["/stock-adjustments/create"] --> B["Producto/variante/categoría<br/>qty +/- , motivo, opcional ubicación"]
+  B --> C["StockAdjustment::adjust()<br/>o adjustVariant()"]
+  C --> D["Employee stock de bin afectado<br/>(ProductLocationStock fila)"]
+  D --> E["ActivityLog + reason code"]
+  E --> F["Reporte de movimientos"]
+  style C fill:#fecaca,stroke:#dc2626
+</div>
+
+<h2>20. Dónde viven los números: bin-level stock (doble sistema)</h2>
+<div class="mermaid">
+flowchart LR
+  PSL["Product.stock<br/>(global del producto)"] .-> FLAC["balance global"]
+  PLS["ProductLocationStock<br/>(por bin: warehouse+locations)"] .-> FL2["suman el global: reconciliado"]
+  SA["StockAdjustment + auditing updates"] -->|escriben ambas| PLS
+  SA --> PSL
+  TR["StockTransfers complete"] --> PLS
+  ORD["Orders ship/cancel"] --> PLS
+  WOS["WorkOrders complete/cancel"] --> PLS
+  RMA["returns receive"] --> PLS
+  RC["ReconcileLocationStock command<br/>(scheduled)"] -->|detecta y corrige drift| PLS
+</div>
+\n</body>
 </html>
