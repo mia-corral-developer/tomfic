@@ -57,12 +57,25 @@ class CountingLifecycleTest extends TestCase
             ->post(route('countings.store'), [
                 'name' => 'Cierre octubre',
                 'description' => 'Toma mensual',
+                'location_ids' => [$this->location->id],
+                'capturador_ids' => [$this->capturador1->id, $this->capturador2->id],
             ])
             ->assertRedirect();
 
         $counting = Counting::where('name', 'Cierre octubre')->firstOrFail();
-        $this->assertSame('draft', $counting->status);
+        $this->assertSame('in_progress', $counting->status);
         $countingId = $counting->id;
+
+        // Auto-programación: C1 y C2 creados por la ubicación, con capturadores asignados.
+        $this->assertSame(2, $counting->rounds()->count());
+        $this->assertSame(1, $counting->rounds()->where('round_type', 'c1')->count());
+        $this->assertSame(1, $counting->rounds()->where('round_type', 'c2')->count());
+        foreach ($counting->rounds as $round) {
+            $this->assertSame(
+                [$this->capturador1->id, $this->capturador2->id],
+                $round->assignments()->orderBy('user_id')->pluck('user_id')->all()
+            );
+        }
 
         // Programa C1 y C2 con capturadores distintos
         foreach ([['c1', $this->capturador1->id], ['c2', $this->capturador2->id]] as [$type, $userId]) {

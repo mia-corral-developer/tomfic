@@ -14,6 +14,10 @@ final class StoreCountingRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
+            'location_ids' => 'required|array|min:1',
+            'location_ids.*' => 'integer',
+            'capturador_ids' => 'nullable|array',
+            'capturador_ids.*' => 'integer',
         ];
     }
 }

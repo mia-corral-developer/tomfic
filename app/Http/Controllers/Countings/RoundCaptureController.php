@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 /**
  * Captura en campo (rol capturador): la PWA consumirá estos endpoints.
@@ -44,7 +45,7 @@ class RoundCaptureController extends Controller
      * Vista de UNA ronda para su capturador asignado:
      * sus items ya capturados, sin NINGÚN dato de la ronda hermana (C1 a ciegas de C2).
      */
-    public function show(Request $request, CountingRound $round): JsonResponse
+    public function show(Request $request, CountingRound $round)
     {
         $user = $request->user();
 
@@ -54,8 +55,16 @@ class RoundCaptureController extends Controller
         // A ciegas: solo los items de ESTA ronda.
         $items = $round->items()->with('product:id,sku,name')->get();
 
-        return response()->json([
-            'round' => $round->only(['id', 'round_type', 'status']),
+        if ($request->wantsJson()) {
+            return response()->json([
+                'round' => $round->only(['id', 'round_type', 'status']),
+                'items' => $items,
+            ]);
+        }
+
+        // Vista de captura web (Inertia) para el capturador asignado.
+        return Inertia::render('Countings/Capture', [
+            'round' => $round->only(['id', 'round_type', 'status', 'counting_id']),
             'items' => $items,
         ]);
     }

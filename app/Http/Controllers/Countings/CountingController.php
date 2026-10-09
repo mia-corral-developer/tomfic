@@ -73,9 +73,51 @@ class CountingController extends Controller
             'organization_id' => $request->user()->organization_id,
             'name' => $request->validated('name'),
             'description' => $request->validated('description'),
-            'status' => 'draft',
+            // Con programación inicial incluida la toma nace in_progress directamente.
+            'status' => 'in_progress',
             'created_by' => $request->user()->id,
         ]);
+
+        // Programación inicial: una ronda C1 + una C2 por ubicación seleccionada,
+        // con los capturadores repartidos por ronda (alternando la lista).
+        $locationIds = collect($request->validated('location_ids'));
+        $capturadorIds = collect($request->validated('capturador_ids') ?? []);
+
+        // Solo ubicaciones de la organización y activas.
+        $validLocationIds = ProductLocation::where('organization_id', $request->user()->organization_id)
+            ->where('is_active', true)
+            ->whereIn('id', $locationIds)
+            ->pluck('id');
+
+        // Capturadores deben pertenecer a la organización.
+        $validUserIds = User::where('organization_id', $request->user()->organization_id)
+            ->whereIn('id', $capturadorIds)
+            ->pluck('id');
+
+        // Cada ronda necesita al menos 1 capturador asignado; si no hay, quedan sin asignación
+        // y el Admin los asigna después (la ronda no puede abrirse sin capturador).
+        DB::transaction(function () use ($counting, $validLocationIds, $validUserIds) {
+            $userIds = $validUserIds->values();
+
+            foreach ($validLocationIds as $locationId) {
+                foreach (['c1', 'c2'] as $roundType) {
+                    $round = CountingRound::create([
+                        'counting_id' => $counting->id,
+                        'product_location_id' => $locationId,
+                        'round_type' => $roundType,
+                        'status' => 'pending',
+                    ]);
+
+                    // Reparto simple: primero da la lista completa C1, luego C2.
+
+                    if ($userIds->isNotEmpty()) {
+                        foreach ($userIds as $userId) {
+                            $round->assignments()->create(['user_id' => $userId]);
+                        }
+                    }
+                }
+            }
+        });
 
         return redirect()->route('countings.show', $counting)
             ->with('success', 'Toma creada. Ahora programa las rondas C1 y C2.');
