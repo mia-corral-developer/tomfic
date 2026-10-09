@@ -75,6 +75,12 @@ enum Permission: string
     case CREATE_STOCK_AUDITS = 'create_stock_audits';
     case MANAGE_STOCK_AUDITS = 'manage_stock_audits';
 
+    // Countings (tomfic-field: tomas con rondas de conteo C1/C2/C3)
+    case VIEW_COUNTINGS = 'view_countings';
+    case CREATE_COUNTINGS = 'create_countings';
+    case MANAGE_COUNTINGS = 'manage_countings';
+    case CAPTURE_COUNTINGS = 'capture_countings'; // rol capturador: solo sus rondas
+
     // Warehouse Management
     case VIEW_WAREHOUSES = 'view_warehouses';
     case CREATE_WAREHOUSES = 'create_warehouses';
@@ -143,6 +149,11 @@ enum Permission: string
             self::VIEW_STOCK_AUDITS => 'View Stock Audits',
             self::CREATE_STOCK_AUDITS => 'Create Stock Audits',
             self::MANAGE_STOCK_AUDITS => 'Manage Stock Audits',
+
+            self::VIEW_COUNTINGS => 'View Countings',
+            self::CREATE_COUNTINGS => 'Create Countings',
+            self::MANAGE_COUNTINGS => 'Manage Countings',
+            self::CAPTURE_COUNTINGS => 'Capture Countings',
 
             self::VIEW_SETTINGS => 'View Settings',
             self::EDIT_SETTINGS => 'Edit Settings',
@@ -219,6 +230,11 @@ enum Permission: string
             self::CREATE_STOCK_AUDITS => 'Can create new stock audits',
             self::MANAGE_STOCK_AUDITS => 'Can manage stock audits, start, complete, and adjust counts',
 
+            self::VIEW_COUNTINGS => 'Can view inventory countings and their rounds',
+            self::CREATE_COUNTINGS => 'Can create inventory countings and program rounds',
+            self::MANAGE_COUNTINGS => 'Can manage countings: open/close rounds, resolve disputes, close counting',
+            self::CAPTURE_COUNTINGS => 'Can capture counts for assigned counting rounds (capturador)',
+
             self::VIEW_SETTINGS => 'Can view system settings',
             self::EDIT_SETTINGS => 'Can modify system settings',
             self::MANAGE_ORGANIZATION => 'Can manage organization details',
@@ -253,7 +269,8 @@ enum Permission: string
             self::VIEW_ROLES, self::CREATE_ROLES, self::EDIT_ROLES, self::DELETE_ROLES => 'Role Management',
             self::VIEW_PRODUCTS, self::CREATE_PRODUCTS, self::EDIT_PRODUCTS, self::DELETE_PRODUCTS,
             self::MANAGE_STOCK, self::TRANSFER_STOCK, self::MANAGE_CATEGORIES, self::MANAGE_LOCATIONS,
-            self::VIEW_STOCK_AUDITS, self::CREATE_STOCK_AUDITS, self::MANAGE_STOCK_AUDITS => 'Inventory Management',
+            self::VIEW_STOCK_AUDITS, self::CREATE_STOCK_AUDITS, self::MANAGE_STOCK_AUDITS,
+            self::VIEW_COUNTINGS, self::CREATE_COUNTINGS, self::MANAGE_COUNTINGS, self::CAPTURE_COUNTINGS => 'Inventory Management',
             self::VIEW_CUSTOMERS, self::CREATE_CUSTOMERS, self::EDIT_CUSTOMERS, self::DELETE_CUSTOMERS => 'Customer Management',
             self::VIEW_SUPPLIERS, self::CREATE_SUPPLIERS, self::EDIT_SUPPLIERS, self::DELETE_SUPPLIERS => 'Supplier Management',
             self::VIEW_PURCHASE_ORDERS, self::CREATE_PURCHASE_ORDERS, self::EDIT_PURCHASE_ORDERS,
