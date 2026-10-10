@@ -15,9 +15,9 @@
 
 ## 3. Admin / API
 
-- [ ] 3.1 Controller `CountingController` (create/store/show lifecycle) + políticas de acceso
-- [ ] 3.2 Programación de rondas y asignación de capturadores (páginas Inertia con Zellia)
-- [ ] 3.3 Acciones del ciclo de vida: abrir/cerrar ronda, abrir C3 cuando detecta discrepancia
+- [x] 3.1 Controller `CountingController` (create/store/show lifecycle) + políticas de acceso
+- [x] 3.2 Programación de rondas y asignación de capturadores (páginas Inertia con Zellia)
+- [x] 3.3 Acciones del ciclo de vida: abrir/cerrar ronda, abrir C3 cuando detecta discrepancia
 
 ## 4. Captura en campo
 
