@@ -255,11 +255,28 @@ class CountingController extends Controller
     {
         $this->authorize('capture', $counting);
 
-        $products = Product::forOrganization($request->user()->organization_id)
+        // Catálogo para la captura. Si llega location_id (ronda), limitamos a los
+        // productos de ESA ubicación (source de verdad física); si no, org-wide.
+        // Búsqueda por barcode/sku/name con paginación — reemplaza el limit(500)
+        // fijado por el catálogo completo sin barcode (objeción B2 del debate).
+        $q = Product::forOrganization($request->user()->organization_id)
             ->active()
-            ->orderBy('name')
-            ->limit(500)
-            ->get(['id', 'sku', 'name']);
+            ->select(['id', 'sku', 'barcode', 'name', 'units_per_box']);
+
+        $locationId = $request->query('location_id');
+        if ($locationId) {
+            $q->where('location_id', (int) $locationId);
+        }
+
+        if ($search = trim((string) $request->query('search'))) {
+            $q->where(function ($w) use ($search) {
+                $w->where('barcode', $search)
+                    ->orWhere('sku', 'like', "%{$search}%")
+                    ->orWhere('name', 'like', "%{$search}%");
+            });
+        }
+
+        $products = $q->orderBy('name')->cursorPaginate(50)->withQueryString();
 
         return response()->json(['products' => $products]);
     }

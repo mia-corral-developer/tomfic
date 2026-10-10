@@ -185,22 +185,35 @@ class CountingResolutionService
             return false;
         }
 
-        if ($this->discrepancies($counting)->isNotEmpty()) {
-            // Discrepancia sin C3 que la arbitre.
-            return $counting->rounds()->where('round_type', 'c3')->exists();
+        $disputes = $this->discrepancies($counting);
+
+        if ($disputes->isEmpty()) {
+            return true;
         }
 
-        return true;
+        // Discrepancias SOLO se cubren con una C3 cerrada EN LA MISMA UBICACIÓN
+        // de cada discrepancia (fix A1: el exists() global dejaba escapar tomas
+        // con disputas en ubicaciones sin árbitro).
+        $c3ClosedLocations = $counting->rounds()
+            ->where('round_type', 'c3')
+            ->where('status', 'closed')
+            ->pluck('product_location_id')
+            ->all();
+
+        $disputedLocations = $disputes->pluck('product_location_id')->unique()->all();
+
+        return empty(array_diff($disputedLocations, $c3ClosedLocations));
     }
 
-    /** Unidades normalizadas por producto en una ronda (units + boxes como unidades sueltas: caja=1 unidad contable por ahora). */
+    /** Unidades normalizadas por producto en una ronda: (cajas × units_per_box) + unidades sueltas. */
     private function totalsByProduct(CountingRound $round): array
     {
         $totals = [];
         foreach ($round->items as $item) {
+            $unitsPerBox = max(1, (int) optional($item->product)->units_per_box);
             $totals[$item->product_id] = ($totals[$item->product_id] ?? 0)
-                + (int) $item->units
-                + (int) $item->boxes;
+                + (((int) $item->boxes) * $unitsPerBox)
+                + (int) $item->units;
         }
         return $totals;
     }

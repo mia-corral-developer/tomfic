@@ -86,7 +86,8 @@ const closeCounting = () => router.post(route('countings.close', props.counting.
                     <p v-if="resolved.length === 0" class="text-sm text-text-secondary">
                         Aún no hay valores finales. Cierra las rondas C1 y C2 (coincidentes) o resuelve con C3.
                     </p>
-                    <table v-else class="min-w-full divide-y divide-border-subtle">
+                    <div v-else class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-border-subtle">
                         <thead>
                             <tr>
                                 <th class="px-3 py-2 text-left text-xs font-medium text-text-secondary">Producto</th>
@@ -112,6 +113,7 @@ const closeCounting = () => router.post(route('countings.close', props.counting.
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </Card>
         </div>
