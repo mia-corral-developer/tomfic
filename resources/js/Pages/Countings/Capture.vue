@@ -3,6 +3,7 @@ import { Head, router } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import { ScanLine, Save } from 'lucide-vue-next';
 import Badge from '@/Components/ui/Badge.vue';
+import { enqueue, sync, pendingCount, loadQueue } from './capture-offline';
 import Card from '@/Components/ui/Card.vue';
 import Button from '@/Components/ui/Button.vue';
 
@@ -26,6 +27,30 @@ const products = ref([]);
 const scanInput = ref(null);
 
 onMounted(async () => {
+    // PWA: registrar el service worker (shell offline)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+    }
+    // Sincronizar cola local al montar y al reconectar la red
+    const doSync = async () => {
+        const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+        const n = await sync(props.round.id, csrf);
+        if (n > 0) {
+            flash.value = `Sincronización completa: ${n} captura(s) subidas.`;
+            // Refresca la lista desde el servidor
+            try {
+                const rr = await fetch(route('countings.rounds.show', props.round.id), {
+                    headers: { Accept: 'application/json', credentials: 'same-origin' },
+                });
+                if (rr.ok) {
+                    const dd = await rr.json();
+                    itemList.value = dd.items || [];
+                }
+            } catch { /* sigue con la lista local */ }
+        }
+    };
+    await doSync();
+    window.addEventListener('online', doSync);
     try {
         const res = await fetch(route('countings.products', { counting: props.round.counting_id }), {
             headers: { Accept: 'application/json' },
@@ -101,7 +126,30 @@ const capture = async () => {
             flash.value = data.error || 'Error al capturar.';
         }
     } catch {
-        flash.value = 'Sin conexion - captura pendiente de sync.';
+        const pending = enqueue(props.round.id, {
+            product_id: pendingProduct.value.id,
+            units: Number(units.value) || 0,
+            boxes: Number(boxes.value) || 0,
+        });
+        const local = itemList.value.findIndex((i) => i.product_id === pendingProduct.value.id);
+        if (local < 0) {
+            itemList.value.push({
+                product_id: pendingProduct.value.id,
+                product: pendingProduct.value,
+                units: Number(units.value) || 0,
+                boxes: Number(boxes.value) || 0,
+                pending: true,
+            });
+        } else {
+            itemList.value[local].units = Number(units.value) || 0;
+            itemList.value[local].boxes = Number(boxes.value) || 0;
+            itemList.value[local].pending = true;
+        }
+        flash.value = `Sin conexion - guardado local (${pending} pendientes). Se sincroniza al reconectar.`;
+        pendingProduct.value = null;
+        units.value = 0;
+        boxes.value = 0;
+        scanInput.value?.focus();
     }
 };
 </script>
@@ -162,9 +210,12 @@ const capture = async () => {
                     <h3 class="mb-3 text-sm font-medium text-text-primary">Ya contado en esta ronda ({{ itemList.length }})</h3>
                     <p v-if="itemList.length === 0" class="text-sm text-text-secondary">Nada aun. Escanea el primer producto.</p>
                     <ul v-else class="divide-y divide-border-subtle">
-                        <li v-for="item in itemList" :key="item.product_id" class="flex items-center justify-between py-2">
+                        <li v-for="item in itemList" :key="item.product_id + (item.pending ? '-p' : '-s')" class="flex items-center justify-between py-2">
                             <span class="text-sm text-text-primary">{{ item.product.name }}</span>
-                            <span class="text-sm font-medium text-text-primary">{{ item.units }} u. / {{ item.boxes }} c.</span>
+                            <span class="text-sm font-medium text-text-primary">
+                                {{ item.units }} u. / {{ item.boxes }} c.
+                                <span v-if="item.pending" class="text-xs text-text-tertiary">local</span>
+                            </span>
                         </li>
                     </ul>
                 </div>

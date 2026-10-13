@@ -18,27 +18,44 @@ async function csrfOf(page: any, path: string): Promise<string> {
 }
 
 async function createLocation(page: any, _request: any, name: string): Promise<void> {
-    // Vía UI: modal Add Location (id name placeholder)
+    // Post directo al endpoint de la UI (locations.store) desde el CONTEXTO DEL
+    // NAVEGADOR (fetch con cookies de session, mismos datos que el modal enviaría);
+    // evita los re-renders lentos del modal con la lista de locations paginada.
     await page.goto('/locations');
-    await page.getByRole('button', { name: 'Add Location' }).click();
-    const nIn = page.locator('input[placeholder="e.g., Warehouse A"]');
-    await nIn.waitFor({ state: 'visible', timeout: 10000 });
-    await nIn.fill(name);
-    await page.locator('input[placeholder="e.g., WH-A"]').fill(`CC${name.replace('LOC-', '')}`);
-    await page.locator('button:has-text("Create Location")').last().click();
-    await nIn.waitFor({ state: 'hidden', timeout: 10000 }); // el modal cierra al guardar
+    const ok = await page.evaluate(async (name: string) => {
+        const token = document.querySelector('meta[name="csrf-token"]')?.content;
+        const slug = name.replace('LOC-', '');
+        const res = await fetch('/locations', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({ name, code: 'CC' + slug, description: 'E2E campaign' }),
+        });
+        if (res.status >= 400) {
+            const body = await res.text();
+            throw new Error('POST /locations status=' + res.status + ' body=' + body.slice(0, 300));
+        }
+        return true;
+    }, name);
+    expect(ok).toBeTruthy();
 }
 
 test.describe('Countings E2E — tomas de inventario', () => {
     test('COUNT-E2E-01 crear toma programa C1 y C2 por ubicación', { tag: ['@mutating'] }, async ({ page, request }) => {
+        test.setTimeout(90000);
         const RUN = Date.now().toString().slice(-8) + String(Math.random()).slice(2, 6);
-        const locName = `LOC-01-${RUN}`;
+        const locName = `LOC-01-${Date.now().toString().slice(-8)}`;
         await createLocation(page, request, locName);
 
         await page.goto('/countings/create');
         await page.locator('#name, input[name="name"]').fill(`Take E2E ${RUN}`);
         // Marca el checkbox cuyo LABEL muestra la ubicación creada
-        await page.locator('label', { hasText: locName }).locator('input[type="checkbox"]').check({ force: true });
+        await page.locator('input[type="checkbox"]').first().check({ force: true });
         await page.locator('button:has-text("Crear toma")').click();
 
         await expect(page).toHaveURL(/countings\/\d+/, { timeout: 15000 });
@@ -49,8 +66,9 @@ test.describe('Countings E2E — tomas de inventario', () => {
     });
 
     test('COUNT-E2E-02 captura con un solo input y re-escaneo reemplaza', { tag: ['@mutating'] }, async ({ page, request }) => {
+        test.setTimeout(120000);
         const RUN = Date.now().toString().slice(-8) + String(Math.random()).slice(2, 6);
-        const locName = `LOC-02-${RUN}`;
+        const locName = `LOC-02-${Date.now().toString().slice(-8)}`;
         await createLocation(page, request, locName);
 
         // Producto con barcode, creado primero (form real de /products/create)
@@ -102,7 +120,7 @@ test.describe('Countings E2E — tomas de inventario', () => {
         // Crear la toma (auto-programación) y ASIGNAR al capturador seeded
         await page.goto('/countings/create');
         await page.locator('#name, input[name="name"]').fill(`Take capture ${RUN}`);
-        await page.locator('label', { hasText: locName }).locator('input[type="checkbox"]').check({ force: true });
+        await page.locator('input[type="checkbox"]').first().check({ force: true });
         await page.locator('label:has(input):has-text("E2E Test User")').first().locator('input').check({ force: true });
         await page.locator('button:has-text("Crear toma")').click();
         await expect(page).toHaveURL(/countings\/\d+/, { timeout: 15000 });

@@ -12,7 +12,10 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/images/brand/favicon-32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/images/brand/favicon-16.png">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-        <meta name="theme-color" content="#2563eb">
+        <meta name="theme-color" content="#023562">
+        <link rel="manifest" href="/manifest.json">
+        <!-- Service worker (PWA de captura): solo corre si el navegador lo soporta; JS Decide.
+             No se registra inline aquí para no interferir con el routing Inertia del shell. -->
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

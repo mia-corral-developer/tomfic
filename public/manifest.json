@@ -1,0 +1,24 @@
+{
+    "name": "Tomfic — Captura de inventario",
+    "short_name": "Tomfic",
+    "description": "Tomas de inventario físico sin papel: captura con escáner, doble conteo C1/C2 y evidencia fotográfica.",
+    "start_url": "/my/counting-rounds",
+    "display": "standalone",
+    "background_color": "#023562",
+    "theme_color": "#023562",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/images/brand/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/images/brand/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
