@@ -16,8 +16,7 @@ ni se agregan columnas a sus tablas:
 - Controllers de `app/Http/Controllers/Inventory/`
 - Sus migraciones y tests
 
-El centinela `FrozenCoreTest` (Fase 0 del plan, pendiente) fallará el build si
-alguien rompe esta regla.
+El centinela `FrozenCoreTest` (Fase 0 del plan) falla el build si alguien rompe esta regla.
 
 ## LA PUERTA DEL PUENTE (patrón aprobado)
 
@@ -58,3 +57,20 @@ Reglas exigidas por el debate (condiciones del crítico, ya en el plan):
 El módulo de tomas lee `products` y `product_locations` del core (con escopes de
 organización) pero no escribe en ellos. `products.units_per_box` vive es
 única columna nueva del catálogo y vive en su propia migración aparte (no en la del core); no modifica migraciones ni tests del core.
+
+## Frozen baseline sha1 (regenerar solo con aprobación del dueño)
+
+El centinela `tests/Feature/Countings/FrozenCoreTest.php` valida que estos archivos
+no cambien contra los sha1 registrados aquí (baseline del 13-oct-2026, commit de
+los fixes A1/A2/B2). Formato: `<sha1>\a<ruta>` con dos espacios.
+
+81521d23cbbe123aee0b37dee3f6e114b21de607  app/Models/Inventory/StockAudit.php
+4706d3d671e635ec276d902e1c5daffab79301c6  app/Models/Inventory/StockAuditItem.php
+0b18a393a5e4a26c10a6d869dd8fb521d91aefaf  app/Models/Inventory/StockAdjustment.php
+ef10b08bee41e94de05b7d67110fe21fc5457103  app/Services/OrderService.php
+450d54ec06e9afd2921e7cdd1351ef0e42acc76f  app/Services/ProductLocationStockService.php
+0f0c5b4a58f19355af9e61cd587e76cb8bb4b4a3  app/Services/TrackedStockAllocationService.php
+9052dd30a9bfa79e90648161b0bdf90815de50a4  app/Services/LocationStockReconciliationService.php
+60675ca004da0730d6e5b4cf559090f72cd393e7  app/Services/TrackedStockReconciliationService.php
+ca3f55eaf32a6d62c51dbcd39e64287c8988b8b0  app/Http/Controllers/Inventory/StockAuditController.php
+514c8f34c4133ac0182c94bb7f412e636d2ea9b9  app/Http/Controllers/Inventory/StockAdjustmentController.php
