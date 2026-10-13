@@ -1,5 +1,8 @@
 import { test, expect } from '../fixtures';
 
+// Spec mutates shared org data: keep serial to avoid cross-worker contention on sqlite.
+test.describe.configure({ mode: 'serial' });
+
 test.describe('Organization Settings', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('/settings/organization');
@@ -25,7 +28,7 @@ test.describe('Organization Settings', () => {
         await nameInput.fill(`${currentName} Updated`);
 
         // Find and click save button
-        const saveButton = page.locator('button[type="submit"]:has-text("Save"), button:has-text("Update")');
+        const saveButton = page.locator('form:has(#name) button[type="submit"]').first();
         await saveButton.click();
 
         // Should show success message
@@ -52,7 +55,12 @@ test.describe('Account Settings', () => {
     });
 
     test('should have password change section', async ({ page }) => {
-        await expect(page.locator('input[name="password"], input[name="current_password"], #password')).toBeVisible();
+        // The account page groups profile fields in tabs (Profile / Password / Notifications).
+        const passwordTab = page.getByRole('button', { name: 'Password' });
+        if (await passwordTab.isVisible()) {
+            await passwordTab.click();
+        }
+        await expect(page.locator('#password, input[name="current_password"]')).toBeVisible();
     });
 
     test('should have notification preferences', async ({ page }) => {
@@ -81,12 +89,15 @@ test.describe('User Management', () => {
 
     test('should display user details', async ({ page }) => {
         await page.goto('/users');
+        // Espera la fila hidratada (la lista es client-side después del primer render)
+        await page.locator('table tbody tr').first().waitFor({ state: 'visible', timeout: 20000 });
 
-        const viewButton = page.locator('a[href*="/users/"]').first();
-        if (await viewButton.isVisible()) {
-            await viewButton.click();
-            await expect(page).toHaveURL(/.*users\/\d+.*/);
-        }
+        // Solo el link de VER (excluye create/edit/pagination/other-user pages)
+        const viewButton = page.locator('a[href*="/users/"]:not([href*="edit"]):not([href*="create"])').first();
+        await expect(viewButton).toBeVisible({ timeout: 10000 });
+        await viewButton.click();
+        await expect(page).toHaveURL(/users\/\d+$/, { timeout: 10000 });
+        await expect(page.locator('h1, h2').first()).toBeVisible();
     });
 });
 
@@ -107,7 +118,7 @@ test.describe('Role Management', () => {
     test('should display permissions in role form', async ({ page }) => {
         await page.goto('/roles/create');
 
-        // Look for permission checkboxes
-        await expect(page.locator('input[type="checkbox"]')).toBeVisible();
+        // Permission checkboxes presentes en el form de role
+        await expect(page.locator('input[type="checkbox"]').first()).toBeVisible();
     });
 });

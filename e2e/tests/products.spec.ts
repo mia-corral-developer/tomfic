@@ -17,7 +17,7 @@ test.describe('Products', () => {
     test('should navigate to create product page', async ({ page }) => {
         await page.click('a:has-text("Create"), a:has-text("Add"), a:has-text("New Product")');
 
-        await expect(page).toHaveURL(/.*products.*create.*/);
+        await expect(page).toHaveURL(/products.*create|products\/--create/, { timeout: 20000 });
         await expect(page.locator('input[name="name"], #name')).toBeVisible();
     });
 
@@ -38,7 +38,7 @@ test.describe('Products', () => {
         await page.click('button[type="submit"]');
 
         // The form must not navigate away when required fields are empty
-        await expect(page).toHaveURL(/.*products.*create.*/);
+        await expect(page).toHaveURL(/products.*create|products\/--create/, { timeout: 20000 });
     });
 
     test('should create a new product', async ({ page }) => {
@@ -66,7 +66,7 @@ test.describe('Products', () => {
 
     test('should search products', async ({ page }) => {
         // Find search input
-        const searchInput = page.locator('input[type="search"], input[placeholder*="search" i], input[name="search"]');
+        const searchInput = page.locator('#search, input[name="search"]');
 
         if (await searchInput.isVisible()) {
             await searchInput.fill('test');

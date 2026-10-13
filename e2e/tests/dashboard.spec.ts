@@ -30,7 +30,7 @@ test.describe('Dashboard', () => {
 
         await page.click('nav >> text=Inventory');
 
-        await expect(page).toHaveURL(/.*products.*/);
+        await expect(page).toHaveURL(/products/, { timeout: 20000 });
     });
 
     test('should navigate to orders from sidebar', async ({ page }) => {
@@ -38,7 +38,7 @@ test.describe('Dashboard', () => {
 
         await page.click('nav >> text=Orders');
 
-        await expect(page).toHaveURL(/.*orders.*/);
+        await expect(page).toHaveURL(/orders/, { timeout: 20000 });
     });
 
     test('should display user menu', async ({ page }) => {

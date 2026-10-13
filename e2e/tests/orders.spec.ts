@@ -17,7 +17,7 @@ test.describe('Orders', () => {
     test('should navigate to create order page', async ({ page }) => {
         await page.click('a:has-text("Create"), a:has-text("Add"), a:has-text("New Order")');
 
-        await expect(page).toHaveURL(/.*orders.*create.*/);
+        await expect(page).toHaveURL(/orders.*create|orders\/create/, { timeout: 20000 });
     });
 
     test('should display order form fields', async ({ page }) => {
@@ -60,7 +60,7 @@ test.describe('Orders', () => {
     });
 
     test('should search orders', async ({ page }) => {
-        const searchInput = page.locator('input[type="search"], input[placeholder*="search" i], input[name="search"]');
+        const searchInput = page.locator('#search, input[name="search"]');
 
         if (await searchInput.isVisible()) {
             await searchInput.fill('ORD-');

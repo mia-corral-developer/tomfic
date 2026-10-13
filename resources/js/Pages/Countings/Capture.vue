@@ -31,7 +31,8 @@ onMounted(async () => {
             headers: { Accept: 'application/json' },
         });
         const data = await res.json();
-        products.value = data.products || [];
+        const payload = data.products;
+products.value = Array.isArray(payload) ? payload : (payload?.data || []);
     } catch {
         // offline: solo lo ya cargado
     }
@@ -40,6 +41,7 @@ onMounted(async () => {
 const findByCode = (value) => {
     const q = value.trim().toUpperCase();
     return products.value.find((p) => (p.sku || '').toUpperCase() === q)
+        || products.value.find((p) => (p.barcode || '').toUpperCase() === q)  // la pistola dispara el EAN
         || products.value.find((p) => (p.name || '').toUpperCase() === q)
         || null;
 };

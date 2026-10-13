@@ -22,7 +22,7 @@ test.describe('Activity Log', () => {
         // Look for filter inputs
         const userFilter = page.locator('select[name="user"], #user-filter');
         const actionFilter = page.locator('select[name="action"], #action-filter');
-        const dateFilter = page.locator('input[type="date"], input[name*="date"]');
+        const dateFilter = page.locator('input[type="date"], input[name*="date"]').first();
 
         // At least one filter should be visible
         const hasFilters = await userFilter.isVisible() ||
@@ -43,7 +43,7 @@ test.describe('Activity Log', () => {
 
     test('should display change details', async ({ page }) => {
         // Look for "View Changes" link or expandable section
-        const viewChanges = page.locator('text=/view changes|view details/i, summary, details');
+        const viewChanges = page.locator('button:has-text("View Changes"), a:has-text("View Changes"), summary:has-text("Changes"), [data-testid="view-changes"]');
 
         if (await viewChanges.first().isVisible()) {
             await viewChanges.first().click();
