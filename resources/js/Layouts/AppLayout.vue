@@ -41,6 +41,7 @@ import {
     Menu,
     X,
     ChevronUp,
+    ListChecks,
 } from 'lucide-vue-next';
 
 import { usePermissions } from '@/composables/usePermissions';
@@ -119,6 +120,7 @@ const sections = computed(() => [
             { icon: ShoppingCart, nameKey: 'nav.orders', href: route('orders.index'), active: ['orders.*'], perm: 'view_orders' },
             { icon: Undo2, nameKey: 'nav.returns', href: route('returns.index'), active: ['returns.*'], perm: 'manage_returns' },
             { icon: ClipboardList, nameKey: 'nav.purchaseOrders', href: route('purchase-orders.index'), active: ['purchase-orders.*'], perm: 'view_purchase_orders' },
+            { icon: ListChecks, nameKey: 'nav.countings', href: route('countings.index'), active: ['countings.*'], perm: 'view_countings' },
             { icon: Truck, nameKey: 'nav.suppliers', href: route('suppliers.index'), active: ['suppliers.*'], perm: 'view_suppliers' },
         ],
     },

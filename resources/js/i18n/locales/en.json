@@ -117,7 +117,8 @@
       "stock": "Stock",
       "insights": "Insights",
       "admin": "Admin"
-    }
+    },
+    "countings": "Inventory Counts"
   },
   "dashboard": {
     "title": "Dashboard",
